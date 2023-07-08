@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import styles from '../css/navbar.module.css'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaMoon, FaSun, FaTimes } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeNav, openNav } from '../features/user/userSlice'
+import { closeNav, openNav, toggleDarkMode } from '../features/user/userSlice'
 
 const Navbar = () => {
-  const { navIsOpen } = useSelector((store) => store.user)
+  const { navIsOpen, darkMode } = useSelector((store) => store.user)
   const dispatch = useDispatch()
 
   return (
@@ -19,16 +19,23 @@ const Navbar = () => {
             Red<span>Inking</span>
           </h2>
         </Link>
-        <nav className={navIsOpen ? styles.open : ''}>
+        <nav
+          className={`${navIsOpen ? styles.open : ''} ${
+            darkMode ? styles.dark : ''
+          }`}
+        >
           {navIsOpen && (
-            <Link to='/'>
+            <Link to='/' /*className={darkMode ? styles.dark : ''}*/>
               <h2>
                 Red<span>Inking</span>
               </h2>
             </Link>
           )}
           {navIsOpen && (
-            <span onClick={() => dispatch(closeNav())}>
+            <span
+              onClick={() => dispatch(closeNav())}
+              /*className={darkMode ? styles.dark : ''}*/
+            >
               <FaTimes />
             </span>
           )}
@@ -39,6 +46,13 @@ const Navbar = () => {
             <Link to='/auth/register'>Get Started</Link>
           </article>
         </nav>
+
+        <article
+          onClick={() => dispatch(toggleDarkMode())}
+          className={darkMode ? styles.dark : styles.light}
+        >
+          {darkMode ? <FaSun /> : <FaMoon />}
+        </article>
       </div>
     </header>
   )

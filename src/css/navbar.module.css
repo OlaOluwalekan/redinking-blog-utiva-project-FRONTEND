@@ -1,6 +1,5 @@
 .main {
   width: 100%;
-  background-color: white;
 }
 
 /* NAV CENTER STYLES */
@@ -9,6 +8,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px;
+  position: relative;
 }
 
 /* OPEN NAV ICON */
@@ -16,8 +16,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #6446ff;
-  color: white;
+  background-color: var(--purpleBlue);
+  color: var(--mainWhite);
   padding: 5px 7px;
   border-radius: 5px;
   margin-right: 20px;
@@ -30,11 +30,11 @@
 }
 
 .main > div > a > h2 {
-  color: #e63264;
+  color: var(--dullRed);
 }
 
 .main > div > a > h2 > span {
-  color: #6446ff;
+  color: var(--purpleBlue);
 }
 
 /* NAV ITEMS CONTAINER */
@@ -42,32 +42,40 @@
   position: fixed;
   left: -300px;
   top: 0;
-  background-color: #6446ff;
+  background-color: var(--purpleBlue);
   width: 200px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: all 300ms ease;
+  transition: var(--midTransition);
 }
 
 .main > div > nav.open {
   left: 0;
 }
 
+.main > div > nav.dark {
+  background-color: var(--darkPurpleBlue);
+}
+
 /* LOGO INSIDE MOBILE NAV */
 .main > div > nav > a {
   text-decoration: none;
   width: 100%;
-  background-color: white;
+  background-color: var(--mainWhite);
   padding: 10px;
 }
 
+.main > div > nav.dark > a {
+  background-color: var(--mainBlack);
+}
+
 .main > div > nav > a > h2 {
-  color: #e63264;
+  color: var(--dullRed);
 }
 
 .main > div > nav > a > h2 > span {
-  color: #6446ff;
+  color: var(--purpleBlue);
 }
 
 /* CONTAINER HOLDING NAV LINKS */
@@ -82,14 +90,14 @@
   line-height: 60px;
   width: 100%;
   padding-left: 15px;
-  color: white;
-  transition: all 300ms ease;
+  color: var(--mainWhite);
+  transition: var(--midTransition);
 }
 
 .main > div > nav > article > a:hover {
   padding-left: 25px;
-  background-color: white;
-  color: #6446ff;
+  background-color: var(--mainWhite);
+  color: var(--purpleBlue);
 }
 
 /* CLOSE NAV ICON */
@@ -97,13 +105,44 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #e63264;
+  background-color: var(--dullRed);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 7px;
   border-radius: 5px;
   cursor: pointer;
+  z-index: 20;
+}
+
+.main > div > nav.dark > span {
+  background-color: var(--darkDullRed);
+  color: var(--mainWhite);
+}
+
+/* TOGGLE DARK MODE */
+.main > div > article {
+  width: 30px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  border: 2px solid var(--purpleBlue);
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  transition: var(--midTransition);
+}
+
+.main > div > article.dark {
+  color: var(--mainWhite);
+  transform: rotate(180deg);
+}
+
+.main > div > article.light {
+  color: var(--mainBlack);
 }
 
 /* DESKTOP STYLES */
@@ -126,12 +165,17 @@
     background: none;
   }
 
+  .main > div > nav.dark {
+    background-color: unset;
+  }
+
   .main > div > nav > a {
     display: none;
   }
 
   .main > div > nav > article {
     flex-direction: row;
+    margin-right: 50px;
   }
 
   .main > div > nav > span {
@@ -141,15 +185,19 @@
   .main > div > nav > article > a {
     width: unset;
     margin-left: 30px;
-    color: #6446ff;
+    color: var(--purpleBlue);
     font-weight: 600;
     padding: 0;
   }
 
+  .main > div > nav.dark > article > a {
+    color: var(--greyishWhite);
+  }
+
   .main > div > nav > article > a:hover {
     padding-left: 0;
-    background-color: white;
-    color: #6446ff;
+    background-color: var(--mainWhite);
+    color: var(--purpleBlue);
     text-decoration: underline;
   }
 }

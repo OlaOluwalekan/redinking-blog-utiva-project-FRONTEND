@@ -7,10 +7,26 @@
   font-family: 'Poppins', sans-serif;
 }
 
+:root {
+  --purpleBlue: #6446ff;
+  --dullRed: #e63264;
+  --mainBlack: #000;
+  --darkPurpleBlue: #140c38;
+  --darkDullRed: #5f0d24;
+  --ashBlack: #2b2a2e;
+  --mainWhite: #fff;
+  --greyishWhite: #d4d4d4;
+  --midTransition: all 300ms ease;
+}
+
+.main {
+  min-height: 100vh;
+}
+
 main.light {
-  background-color: white;
+  background-color: var(--mainWhite);
 }
 
 main.dark {
-  background-color: black;
+  background-color: var(--mainBlack);
 }

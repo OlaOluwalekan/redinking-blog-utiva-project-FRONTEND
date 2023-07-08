@@ -16,9 +16,12 @@ const userSlice = createSlice({
     closeNav: (state) => {
       state.navIsOpen = false
     },
+    toggleDarkMode: (state) => {
+      state.darkMode = !state.darkMode
+    },
   },
 })
 
-export const { openNav, closeNav } = userSlice.actions
+export const { openNav, closeNav, toggleDarkMode } = userSlice.actions
 
 export default userSlice.reducer
