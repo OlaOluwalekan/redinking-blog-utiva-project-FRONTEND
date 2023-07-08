@@ -1,0 +1,155 @@
+.main {
+  width: 100%;
+  background-color: white;
+}
+
+/* NAV CENTER STYLES */
+.main > div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+/* OPEN NAV ICON */
+.main > div > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6446ff;
+  color: white;
+  padding: 5px 7px;
+  border-radius: 5px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+/* LOGO STYLES */
+.main > div > a {
+  text-decoration: none;
+}
+
+.main > div > a > h2 {
+  color: #e63264;
+}
+
+.main > div > a > h2 > span {
+  color: #6446ff;
+}
+
+/* NAV ITEMS CONTAINER */
+.main > div > nav {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  background-color: #6446ff;
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: all 300ms ease;
+}
+
+.main > div > nav.open {
+  left: 0;
+}
+
+/* LOGO INSIDE MOBILE NAV */
+.main > div > nav > a {
+  text-decoration: none;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+}
+
+.main > div > nav > a > h2 {
+  color: #e63264;
+}
+
+.main > div > nav > a > h2 > span {
+  color: #6446ff;
+}
+
+/* CONTAINER HOLDING NAV LINKS */
+.main > div > nav > article {
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAV LINKS */
+.main > div > nav > article > a {
+  text-decoration: none;
+  line-height: 60px;
+  width: 100%;
+  padding-left: 15px;
+  color: white;
+  transition: all 300ms ease;
+}
+
+.main > div > nav > article > a:hover {
+  padding-left: 25px;
+  background-color: white;
+  color: #6446ff;
+}
+
+/* CLOSE NAV ICON */
+.main > div > nav > span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e63264;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* DESKTOP STYLES */
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+
+  .main > div > span {
+    display: none;
+  }
+
+  .main > div > nav {
+    position: unset;
+    height: unset;
+    width: unset;
+    flex-direction: row;
+    background: none;
+  }
+
+  .main > div > nav > a {
+    display: none;
+  }
+
+  .main > div > nav > article {
+    flex-direction: row;
+  }
+
+  .main > div > nav > span {
+    display: none;
+  }
+
+  .main > div > nav > article > a {
+    width: unset;
+    margin-left: 30px;
+    color: #6446ff;
+    font-weight: 600;
+    padding: 0;
+  }
+
+  .main > div > nav > article > a:hover {
+    padding-left: 0;
+    background-color: white;
+    color: #6446ff;
+    text-decoration: underline;
+  }
+}
