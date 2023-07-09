@@ -1,0 +1,15 @@
+export const interests = [
+  { id: 1, name: 'JavaScript', value: 'javascript' },
+  { id: 2, name: 'HTML', value: 'html' },
+  { id: 3, name: 'CSS', value: 'css' },
+  { id: 4, name: 'HTML5', value: 'html5' },
+  { id: 5, name: 'CSS3', value: 'css3' },
+  { id: 6, name: 'JQuery', value: 'jquery' },
+  { id: 7, name: 'Database', value: 'database' },
+  { id: 8, name: 'MongoDB', value: 'mongodb' },
+  { id: 9, name: 'SQL', value: 'sql' },
+  { id: 10, name: 'Blockchain', value: 'blockchain' },
+  { id: 11, name: 'Cryptocurrency', value: 'cryptocurrency' },
+  { id: 12, name: 'Metaverse', value: 'metaverse' },
+  { id: 13, name: 'Dating', value: 'dating' },
+]

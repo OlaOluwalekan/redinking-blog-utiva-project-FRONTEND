@@ -1,0 +1,96 @@
+.main {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.main > h2 {
+  color: var(--purpleBlue);
+  width: fit-content;
+  margin: 20px auto;
+}
+
+.main > form {
+  width: 80%;
+  max-width: 500px;
+  margin: 60px auto;
+  background-color: var(--dullRed);
+  padding: 20px 10px;
+}
+
+.main > form > section > div {
+  width: 100%;
+}
+
+.main > form > section > div > label {
+  font-size: 13px;
+  color: var(--mainBlack);
+}
+
+/* INPUT FIELDS */
+.main > form > section > div > input {
+  padding: 5px 10px;
+  width: 100%;
+  border: none;
+  margin: 5px 0;
+}
+
+.main > form > section > div > input:focus {
+  outline: 2px solid var(--purpleBlue);
+}
+
+/* HIDE ARROWS FROM INPUT:NUMBER  */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  appearance: none;
+}
+
+input[type='number'] {
+  appearance: none;
+}
+
+.step3 > div:nth-of-type(2) {
+  background-color: var(--mainWhite);
+  margin: 10px 0;
+  font-size: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 10px;
+  padding: 5px;
+}
+
+.step3 > div:nth-of-type(2) > article {
+  background-color: var(--purpleBlue);
+  display: flex;
+  padding: 3px;
+  color: var(--mainWhite);
+}
+
+.step3 > div:nth-of-type(2) > article > span:first-of-type {
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step3 > div:last-of-type {
+  /* background-color: yellow; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 20px;
+}
+
+.step3 > div:last-of-type > article {
+  background: #6546ff42;
+  padding: 2px 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.step3 > div:last-of-type > article > input {
+  display: none;
+}
+
+.step3 > div:last-of-type > article > label {
+  cursor: pointer;
+}

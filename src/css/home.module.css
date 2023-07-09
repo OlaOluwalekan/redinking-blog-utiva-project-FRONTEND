@@ -61,6 +61,19 @@
   margin: 30px 0;
   text-align: center;
   font-size: 20px;
+  color: var(--ashBlack);
+}
+
+.hero > section > h3 > span {
+  color: var(--dullRed);
+}
+
+.hero.hero.dark > section > h3 {
+  color: var(--greyishWhite);
+}
+
+.hero.hero.dark > section > h3 > span {
+  color: var(--purpleBlue);
 }
 
 /* LOGIN AND GET STARTED BUTTONS */

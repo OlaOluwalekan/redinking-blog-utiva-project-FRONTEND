@@ -19,11 +19,10 @@ const Hero = () => {
         </p>
 
         <h3>
-          From programming to crypto-currencies; from cooking recipe to health
-          talk;{' '}
-          <span>
-            Here is a blogging platform you will find anything you ever needed
-          </span>
+          From <span>programming</span> to <span>crypto-currencies</span>; from
+          <span>cooking recipe</span> to <span>health talk</span>; Here is a{' '}
+          <span>blogging platform</span> you will find <span>everything</span>{' '}
+          you will ever needed
         </h3>
 
         <article>
