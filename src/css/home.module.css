@@ -1,18 +1,171 @@
+.hero {
+  position: relative;
+}
+
 /* HERO BANNER IMAGE */
 .hero > img {
   width: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .hero.dark > img {
   content: url('https://res.cloudinary.com/dyyoorpns/image/upload/v1688895907/RedInking/Static%20Images/Hero/redinking_hero_-_darkBlue0_-_MOBILE_sezlwz.png');
 }
 
+/* HERO TEXT */
+.hero > section {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 90%;
+  background: linear-gradient(#ffffff7a, #fff);
+  padding: 20px 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero.dark > section {
+  background: linear-gradient(#00000098, #000);
+  color: var(--greyishWhite);
+}
+
+/* MAIN TEXT */
+.hero > section > p:first-of-type {
+  font-size: 40px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.hero > section > p:first-of-type > span.strike {
+  text-decoration: line-through;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.hero > section > p:first-of-type > span.red {
+  color: var(--dullRed);
+}
+
+.hero > section > p:first-of-type > span.ink {
+  color: var(--purpleBlue);
+}
+
+/* THINGS YOU WILL FIND ON REDINKING */
+.hero > section > h3 {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* LOGIN AND GET STARTED BUTTONS */
+.hero > section > article {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero > section > article > a {
+  text-decoration: none;
+  display: inline-block;
+  width: 150px;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: 600;
+  margin: 10px 0;
+  transition: var(--midTransition);
+}
+
+.hero > section > article > a:first-of-type {
+  border: 2px solid var(--purpleBlue);
+  color: var(--purpleBlue);
+}
+
+.hero > section > article > a:first-of-type:hover {
+  background-color: var(--purpleBlue);
+  color: var(--mainWhite);
+}
+
+.hero > section > article > a:last-of-type {
+  background-color: var(--purpleBlue);
+  border: 2px solid var(--purpleBlue);
+  color: var(--mainWhite);
+}
+
+.hero > section > article > a:last-of-type:hover {
+  color: var(--purpleBlue);
+  background: none;
+}
+
 /* DESKTOP SCREEN STYLES */
+@media screen and (min-width: 550px) {
+  .hero > img {
+    max-height: 90vh;
+  }
+  .hero > section {
+    bottom: -20px;
+  }
+  .hero > section > p:first-of-type {
+    font-size: 55px;
+    width: 90%;
+  }
+}
 @media screen and (min-width: 700px) {
   .hero > img {
     content: url('https://res.cloudinary.com/dyyoorpns/image/upload/v1688896836/RedInking/Static%20Images/Hero/redinking_hero_-_red0_rtt7cb.png');
   }
   .hero.dark > img {
     content: url('https://res.cloudinary.com/dyyoorpns/image/upload/v1688897890/RedInking/Static%20Images/Hero/redinking_hero_-_darkBlue0_bgglec.png');
+  }
+  .hero > section {
+    width: 80%;
+    max-width: 1100px;
+  }
+  .hero > section > p:first-of-type {
+    font-size: 55px;
+  }
+  .hero > section > h3 {
+    font-size: 22px;
+  }
+  .hero > section > article {
+    flex-direction: row;
+  }
+  .hero > section > article > a {
+    margin: 0 20px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .hero > section {
+    padding: 60px 0;
+  }
+  .hero > section > p:first-of-type {
+    width: 80%;
+    max-width: 700px;
+  }
+  .hero > section > h3 {
+    font-size: 30px;
+    width: 80%;
+  }
+}
+
+/*  VERY SMALL SCREENS */
+@media screen and (max-width: 420px) {
+  .hero > section {
+    bottom: unset;
+    top: 80px;
+  }
+  .hero > section > p:first-of-type {
+    font-size: 40px;
+  }
+  .hero > section > h3 {
+    font-size: 20px;
   }
 }
