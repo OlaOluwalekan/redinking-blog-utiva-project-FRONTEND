@@ -1,0 +1,18 @@
+/* HERO BANNER IMAGE */
+.hero > img {
+  width: 100%;
+}
+
+.hero.dark > img {
+  content: url('https://res.cloudinary.com/dyyoorpns/image/upload/v1688895907/RedInking/Static%20Images/Hero/redinking_hero_-_darkBlue0_-_MOBILE_sezlwz.png');
+}
+
+/* DESKTOP SCREEN STYLES */
+@media screen and (min-width: 700px) {
+  .hero > img {
+    content: url('https://res.cloudinary.com/dyyoorpns/image/upload/v1688896836/RedInking/Static%20Images/Hero/redinking_hero_-_red0_rtt7cb.png');
+  }
+  .hero.dark > img {
+    content: url('https://res.cloudinary.com/dyyoorpns/image/upload/v1688897890/RedInking/Static%20Images/Hero/redinking_hero_-_darkBlue0_bgglec.png');
+  }
+}
