@@ -7,13 +7,13 @@
 .main > h2 {
   color: var(--purpleBlue);
   width: fit-content;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .main > form {
   width: 80%;
   max-width: 500px;
-  margin: 60px auto;
+  margin: 20px auto;
   background-color: var(--dullRed);
   padding: 20px 10px;
 }
@@ -25,6 +25,15 @@
 .main > form > section > div > label {
   font-size: 13px;
   color: var(--mainBlack);
+}
+
+.main > form.dark {
+  background-color: var(--darkPurpleBlue);
+  color: var(--greyishWhite);
+}
+
+.main > form.dark label {
+  color: var(--greyishWhite);
 }
 
 /* INPUT FIELDS */
@@ -71,10 +80,11 @@ input[type='number'] {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 .step3 > div:last-of-type {
-  /* background-color: yellow; */
   display: flex;
   flex-wrap: wrap;
   gap: 5px 20px;
@@ -85,6 +95,7 @@ input[type='number'] {
   padding: 2px 5px;
   cursor: pointer;
   border-radius: 3px;
+  font-size: 14px;
 }
 
 .step3 > div:last-of-type > article > input {
@@ -93,4 +104,34 @@ input[type='number'] {
 
 .step3 > div:last-of-type > article > label {
   cursor: pointer;
+}
+
+/* BUTTONS */
+.main > form > article {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.main > form > article > button {
+  cursor: pointer;
+  border: none;
+}
+
+.main > form > article > button:first-of-type {
+  padding: 5px 0;
+  background: none;
+  font-weight: 600;
+  color: var(--darkPurpleBlue);
+}
+
+.main > form > article > button:last-of-type {
+  padding: 5px 20px;
+  background-color: var(--purpleBlue);
+  color: white;
+}
+
+.main > form > p {
+  text-align: center;
+  font-size: 15px;
 }

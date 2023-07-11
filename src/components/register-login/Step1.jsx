@@ -1,19 +1,14 @@
 import { useState } from 'react'
 import Input from './Input'
 
-const Step1 = () => {
-  const [values, setValues] = useState({
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
-  })
-
+const Step1 = ({ values, setValues }) => {
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
     setValues({ ...values, [name]: value })
+    if (name === 'username') {
+      // console.log(value)
+    }
   }
 
   return (
@@ -50,7 +45,7 @@ const Step1 = () => {
         type='password'
         name='password'
         labelText='Password'
-        value={values.username}
+        value={values.password}
         handleChange={handleChange}
       />
     </section>

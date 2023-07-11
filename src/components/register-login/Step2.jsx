@@ -1,9 +1,6 @@
-import { useState } from 'react'
 import Input from './Input'
 
-const Step2 = () => {
-  const [code, setCode] = useState('')
-
+const Step2 = ({ code, setCode }) => {
   const handleChange = (e) => {
     setCode(e.target.value)
   }

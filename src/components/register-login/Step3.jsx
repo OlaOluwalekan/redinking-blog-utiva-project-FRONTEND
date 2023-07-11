@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Input from './Input'
 import { interests } from '../../interests-data'
 import { FaTimes } from 'react-icons/fa'
@@ -13,22 +13,24 @@ const Step3 = () => {
     setInterestSearch(e.target.value)
   }
 
-  const handleCheck = (e, li) => {
-    // // console.log(e.target.parentElement)
-    // if (e.target.checked) {
-    //   // e.target.parentElement.style.background = '#6446ff'
-    //   // e.target.parentElement.style.display = 'none'
-    // } else {
-    //   e.target.parentElement.style.background = '#6546ff42'
-    // }
+  const handleCheck = (li) => {
     setSelectedInterests([...selectedInterests, li])
+  }
+
+  const removeInterest = (id) => {
+    const newSelectedInterest = selectedInterests.filter((int) => {
+      return int !== id
+    })
+    setSelectedInterests(newSelectedInterest)
+    setInterestList([...interestList, id])
+  }
+
+  useEffect(() => {
     const newInterestList = interestList.filter((int) => {
       return !selectedInterests.includes(int)
     })
     setInterestList(newInterestList)
-  }
-
-  console.log(selectedInterests)
+  }, [selectedInterests])
 
   return (
     <section className={styles.step3}>
@@ -41,30 +43,29 @@ const Step3 = () => {
         handleChange={handleChange}
       />
       <div>
-        {/* <p>Your Interests</p> */}
         {selectedInterests.map((int, i) => {
           return (
             <article key={i}>
-              <span>
+              <span onClick={() => removeInterest(int)}>
                 <FaTimes />
               </span>{' '}
-              <span>{int.name}</span>
+              <span>{int}</span>
             </article>
           )
         })}
       </div>
       <div>
-        {interestList.map((li) => {
+        {interestList.map((li, i) => {
           return (
-            <article key={li.id}>
+            <article key={li}>
               <input
                 type='checkbox'
-                name={li.value}
-                id={li.value}
-                value={li.value}
-                onChange={(e) => handleCheck(e, li)}
+                name={li}
+                id={li}
+                value={li}
+                onChange={(e) => handleCheck(li)}
               />
-              <label htmlFor={li.value}>{li.name}</label>
+              <label htmlFor={li}>{li}</label>
             </article>
           )
         })}
