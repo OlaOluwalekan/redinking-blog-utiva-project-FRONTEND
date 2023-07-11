@@ -5,7 +5,12 @@ import Step2 from '../components/register-login/Step2'
 import Step3 from '../components/register-login/Step3'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { confirmCode, registerUser } from '../features/user/userSlice'
+import {
+  confirmCode,
+  registerUser,
+  updateUser,
+} from '../features/user/userSlice'
+import { getUserFromLocalStorage } from '../utils/localStorage'
 
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -17,6 +22,7 @@ const Register = () => {
     password: '',
   })
   const [verificationCode, setVerificationCode] = useState('')
+  const [selectedInterests, setSelectedInterests] = useState([])
   const { darkMode } = useSelector((store) => store.user)
   const dispatch = useDispatch()
 
@@ -45,6 +51,13 @@ const Register = () => {
       if (user) {
         setCurrentStep(3)
       }
+    } else {
+      dispatch(
+        updateUser({
+          id: getUserFromLocalStorage().user._id,
+          data: { interests: selectedInterests },
+        })
+      )
     }
   }
 
@@ -64,11 +77,22 @@ const Register = () => {
         ) : currentStep === 2 ? (
           <Step2 code={verificationCode} setCode={setVerificationCode} />
         ) : (
-          <Step3 />
+          <Step3
+            selectedInterests={selectedInterests}
+            setSelectedInterests={setSelectedInterests}
+          />
         )}
         <article>
           {currentStep !== 1 && (
-            <button>{currentStep === 2 ? 'Resend Code' : 'Skip'}</button>
+            <button
+              style={{
+                color: darkMode
+                  ? 'var(--greyishWhite)'
+                  : 'var(--darkPurpleBlue)',
+              }}
+            >
+              {currentStep === 2 ? 'Resend Code' : 'Skip'}
+            </button>
           )}
           <button
             type='submit'

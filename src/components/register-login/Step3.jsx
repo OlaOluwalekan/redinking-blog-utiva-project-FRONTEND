@@ -4,9 +4,8 @@ import { interests } from '../../interests-data'
 import { FaTimes } from 'react-icons/fa'
 import styles from '../../css/register.module.css'
 
-const Step3 = () => {
+const Step3 = ({ selectedInterests, setSelectedInterests }) => {
   const [interestSearch, setInterestSearch] = useState('')
-  const [selectedInterests, setSelectedInterests] = useState([])
   const [interestList, setInterestList] = useState(interests)
 
   const handleChange = (e) => {
