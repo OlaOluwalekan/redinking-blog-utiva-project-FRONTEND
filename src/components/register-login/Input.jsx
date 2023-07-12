@@ -1,3 +1,5 @@
+import { FaCheck, FaTimes } from 'react-icons/fa'
+
 const Input = ({
   type,
   name,
@@ -19,7 +21,25 @@ const Input = ({
         value={value}
         onChange={handleChange}
       />
-      <p>{message}</p>
+      <p
+        style={{
+          background:
+            message && message.includes('available')
+              ? '#0080008f'
+              : '#ff000081',
+        }}
+      >
+        {/* {message && message.includes('available') ? (
+          <span>
+            {message} <FaCheck />
+          </span>
+        ) : (
+          <span>
+            {message} <FaTimes />
+          </span>
+        )} */}
+        {message}
+      </p>
     </div>
   )
 }

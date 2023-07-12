@@ -121,8 +121,18 @@
   color: var(--mainWhite);
 }
 
+.main > div > div {
+  /* background-color: yellow; */
+  width: fit-content;
+  position: absolute;
+  right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 /* TOGGLE DARK MODE */
-.main > div > article {
+.main > div > div > article {
   width: 30px;
   aspect-ratio: 1;
   display: flex;
@@ -132,19 +142,109 @@
   cursor: pointer;
   border: 2px solid var(--purpleBlue);
   border-radius: 50%;
-  position: absolute;
-  right: 20px;
   transition: var(--midTransition);
   z-index: 30;
 }
 
-.main > div > article.dark {
+.main > div > div > div {
+  margin-left: 10px;
+}
+
+.main > div > div > div > span {
+  width: 35px;
+  aspect-ratio: 1;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--purpleBlue);
+  cursor: pointer;
+}
+
+.main > div > div > article.dark {
   color: var(--mainWhite);
   transform: rotate(180deg);
 }
 
-.main > div > article.light {
+.main > div > div > article.light {
   color: var(--mainBlack);
+}
+
+.main > div > div > div.dark > span {
+  color: var(--purpleBlue);
+}
+
+/* USER MENU */
+.main > div > div > aside {
+  position: absolute;
+  top: 40px;
+  background-color: var(--mainWhite);
+  z-index: 40;
+  width: 200px;
+  box-shadow: 1px 1px 7px var(--darkPurpleBlue);
+}
+
+.main > div > div > aside > a {
+  /* background-color: yellow; */
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+  padding-left: 15px;
+  text-decoration: none;
+  color: var(--purpleBlue);
+}
+
+.main > div > div > aside > button {
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+  padding-left: 15px;
+  color: var(--purpleBlue);
+  border: none;
+  width: 100%;
+  background: none;
+  cursor: pointer;
+}
+
+.main > div > div > aside > a:hover {
+  color: var(--mainWhite);
+  background-color: var(--purpleBlue);
+}
+
+.main > div > div > aside > button:hover {
+  color: var(--mainWhite);
+  background-color: var(--purpleBlue);
+}
+
+/* .main > div > div > aside > hr {
+  border: 0.5px solid var(--darkPurpleBlue);
+} */
+
+.main > div > div > aside > a > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.main > div > div > aside > button > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.main > div > div > aside.dark {
+  background-color: var(--darkPurpleBlue);
+}
+
+.main > div > div > aside.dark > a {
+  color: var(--mainWhite);
+}
+
+.main > div > div > aside.dark > button {
+  color: var(--mainWhite);
 }
 
 /* DESKTOP STYLES */
@@ -178,7 +278,7 @@
 
   .main > div > nav > article {
     flex-direction: row;
-    margin-right: 50px;
+    margin-right: 100px;
   }
 
   .main > div > nav > span {

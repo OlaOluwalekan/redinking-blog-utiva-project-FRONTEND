@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import Input from './Input'
+import { useDispatch } from 'react-redux'
+import { checkUsername } from '../../features/user/userSlice'
 
 const Step1 = ({ values, setValues }) => {
-  const handleChange = (e) => {
+  const [message, setMessage] = useState('')
+  const dispatch = useDispatch()
+
+  const handleChange = async (e) => {
     const name = e.target.name
     const value = e.target.value
     setValues({ ...values, [name]: value })
     if (name === 'username') {
-      // console.log(value)
+      const data = await dispatch(checkUsername({ username: value }))
+      setMessage(data.payload.msg)
     }
   }
 
@@ -40,6 +46,7 @@ const Step1 = ({ values, setValues }) => {
         labelText='Username'
         value={values.username}
         handleChange={handleChange}
+        message={message}
       />
       <Input
         type='password'

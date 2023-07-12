@@ -44,6 +44,14 @@
   margin: 5px 0;
 }
 
+.main > form > section > div > p {
+  font-size: 12px;
+  width: fit-content;
+  padding: 0 5px;
+  border-radius: 3px;
+  color: var(--greyishWhite);
+}
+
 .main > form > section > div > input:focus {
   outline: 2px solid var(--purpleBlue);
 }

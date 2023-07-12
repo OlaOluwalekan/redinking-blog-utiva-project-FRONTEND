@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../css/register.module.css'
 import Step1 from '../components/register-login/Step1'
 import Step2 from '../components/register-login/Step2'
 import Step3 from '../components/register-login/Step3'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   confirmCode,
   registerUser,
+  sendVerificationEmail,
   updateUser,
 } from '../features/user/userSlice'
 import { getUserFromLocalStorage } from '../utils/localStorage'
@@ -23,8 +24,22 @@ const Register = () => {
   })
   const [verificationCode, setVerificationCode] = useState('')
   const [selectedInterests, setSelectedInterests] = useState([])
-  const { darkMode } = useSelector((store) => store.user)
+  const [count, setCount] = useState(0)
+  const [isRunning, setIsRunning] = useState(false)
+  const { darkMode, user } = useSelector((store) => store.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    let interval
+    if (isRunning) {
+      interval = setInterval(() => {
+        setCount((prevCount) => prevCount - 1)
+      }, 1000)
+    }
+
+    return () => clearInterval(interval)
+  }, [isRunning])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -39,6 +54,8 @@ const Register = () => {
       } = await dispatch(registerUser(values))
       if (user) {
         setCurrentStep(2)
+        setCount(15)
+        setIsRunning(true)
       }
     } else if (currentStep === 2) {
       if (!verificationCode) {
@@ -52,12 +69,37 @@ const Register = () => {
         setCurrentStep(3)
       }
     } else {
-      dispatch(
+      await dispatch(
         updateUser({
           id: getUserFromLocalStorage().user._id,
           data: { interests: selectedInterests },
         })
       )
+      setCurrentStep(4)
+    }
+  }
+
+  useEffect(() => {
+    if (count === 0) {
+      setIsRunning(false)
+    }
+  }, [count])
+
+  useEffect(() => {
+    if (user && currentStep > 3) {
+      setTimeout(() => {
+        navigate('/')
+      }, 2000)
+    }
+  }, [user, currentStep])
+
+  const handleClick = async () => {
+    if (currentStep === 2) {
+      await dispatch(
+        sendVerificationEmail({ email: getUserFromLocalStorage().user.email })
+      )
+      setCount(15)
+      setIsRunning(true)
     }
   }
 
@@ -85,13 +127,22 @@ const Register = () => {
         <article>
           {currentStep !== 1 && (
             <button
+              type='button'
               style={{
                 color: darkMode
                   ? 'var(--greyishWhite)'
                   : 'var(--darkPurpleBlue)',
+                cursor: isRunning ? 'not-allowed' : 'pointer',
+                opacity: isRunning ? '0.5' : '1',
               }}
+              onClick={handleClick}
+              disabled={isRunning}
             >
-              {currentStep === 2 ? 'Resend Code' : 'Skip'}
+              {currentStep === 2
+                ? count > 0
+                  ? `Resend code in ${count}s`
+                  : 'Resend Code'
+                : 'Skip'}
             </button>
           )}
           <button

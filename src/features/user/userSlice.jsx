@@ -1,17 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import customFetch from '../../utils/axios'
 import {
+  checkUsernameThunk,
   confirmCodeThunk,
   registerUserThunk,
+  sendVerificationEmailThunk,
   updateUserThunk,
 } from './userThunk'
-import { addUserToLocalStorage } from '../../utils/localStorage'
+import {
+  addUserToLocalStorage,
+  getUserFromLocalStorage,
+  removeUserFromLocalStorage,
+} from '../../utils/localStorage'
 
 const initialState = {
   darkMode: false,
-  user: null,
+  user: getUserFromLocalStorage(),
   navIsOpen: false,
   isLoading: false,
+  userMenuIsOpen: false,
 }
 
 export const registerUser = createAsyncThunk(
@@ -39,6 +46,28 @@ export const updateUser = createAsyncThunk(
   }
 )
 
+export const sendVerificationEmail = createAsyncThunk(
+  'user/sendVerificationEmail',
+  async (payload, thunkAPI) => {
+    return sendVerificationEmailThunk(
+      `/auth/sendVerifyEmail`,
+      payload,
+      thunkAPI
+    )
+  }
+)
+
+export const checkUsername = createAsyncThunk(
+  'user/checkUsername',
+  async (payload, thunkAPI) => {
+    return checkUsernameThunk(
+      `/auth/checkUsername/query?username=${payload.username}`,
+      payload,
+      thunkAPI
+    )
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -51,6 +80,13 @@ const userSlice = createSlice({
     },
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode
+    },
+    toggleUserMenu: (state) => {
+      state.userMenuIsOpen = !state.userMenuIsOpen
+    },
+    logOut: (state) => {
+      state.user = null
+      removeUserFromLocalStorage()
     },
   },
   extraReducers: (builder) => {
@@ -91,9 +127,32 @@ const userSlice = createSlice({
         state.isLoading = false
         console.log(payload)
       })
+      .addCase(sendVerificationEmail.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(sendVerificationEmail.fulfilled, (state, { payload }) => {
+        state.user = payload
+        state.isLoading = false
+        addUserToLocalStorage(payload)
+      })
+      .addCase(sendVerificationEmail.rejected, (state, { payload }) => {
+        state.isLoading = false
+        console.log(payload)
+      })
+      .addCase(checkUsername.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(checkUsername.fulfilled, (state, { payload }) => {
+        state.isLoading = false
+      })
+      .addCase(checkUsername.rejected, (state, { payload }) => {
+        state.isLoading = false
+        console.log(payload)
+      })
   },
 })
 
-export const { openNav, closeNav, toggleDarkMode } = userSlice.actions
+export const { openNav, closeNav, toggleDarkMode, toggleUserMenu, logOut } =
+  userSlice.actions
 
 export default userSlice.reducer

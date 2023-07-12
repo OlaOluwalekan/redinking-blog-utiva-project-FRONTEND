@@ -1,11 +1,24 @@
 import { Link } from 'react-router-dom'
 import styles from '../css/navbar.module.css'
-import { FaBars, FaMoon, FaSun, FaTimes } from 'react-icons/fa'
+import { FaBars, FaMoon, FaSun, FaTimes, FaUserCircle } from 'react-icons/fa'
+import { ImBookmarks, ImProfile } from 'react-icons/im'
+import { TfiHelpAlt, TfiSettings, TfiWrite } from 'react-icons/tfi'
+import { MdPolicy } from 'react-icons/md'
+import { BiLogOut } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeNav, openNav, toggleDarkMode } from '../features/user/userSlice'
+import {
+  closeNav,
+  logOut,
+  openNav,
+  toggleDarkMode,
+  toggleUserMenu,
+} from '../features/user/userSlice'
+import UserMenuItems from './UserMenuItems'
 
 const Navbar = () => {
-  const { navIsOpen, darkMode } = useSelector((store) => store.user)
+  const { navIsOpen, darkMode, user, userMenuIsOpen } = useSelector(
+    (store) => store.user
+  )
   const dispatch = useDispatch()
 
   return (
@@ -49,18 +62,58 @@ const Navbar = () => {
           <article onClick={() => dispatch(closeNav())}>
             <Link to='/about'>About</Link>
             <Link to='/write'>Write</Link>
-            <Link to='/auth/login'>Sign In</Link>
-            <Link to='/auth/register'>Get Started</Link>
+            {!user && <Link to='/auth/login'>Sign In</Link>}
+            {!user && <Link to='/auth/register'>Get Started</Link>}
           </article>
         </nav>
 
         {/* TOGGLE DARK MODE */}
-        <article
-          onClick={() => dispatch(toggleDarkMode())}
-          className={darkMode ? styles.dark : styles.light}
-        >
-          {darkMode ? <FaSun /> : <FaMoon />}
-        </article>
+        <div>
+          <article
+            onClick={() => dispatch(toggleDarkMode())}
+            className={darkMode ? styles.dark : styles.light}
+          >
+            {darkMode ? <FaSun /> : <FaMoon />}
+          </article>
+
+          {/* USER MENU */}
+          {user && (
+            <div className={darkMode ? styles.dark : styles.light}>
+              <span onClick={() => dispatch(toggleUserMenu())}>
+                <FaUserCircle />
+              </span>
+            </div>
+          )}
+          {userMenuIsOpen && (
+            <aside className={darkMode ? styles.dark : styles.light}>
+              <UserMenuItems path='/' text='Profile' icon={<ImProfile />} />
+              <UserMenuItems path='/' text='Bookmarks' icon={<ImBookmarks />} />
+              <UserMenuItems path='/' text='My Posts' icon={<TfiWrite />} />
+              <hr />
+              <UserMenuItems path='/' text='Settings' icon={<TfiSettings />} />
+              <UserMenuItems path='/' text='Help' icon={<TfiHelpAlt />} />
+              <UserMenuItems
+                path='/'
+                text='Terms & Policy'
+                icon={<MdPolicy />}
+              />
+              <hr />
+              <button
+                onClick={() => {
+                  dispatch(toggleUserMenu())
+                  setTimeout(() => {
+                    dispatch(logOut())
+                  }, 1000)
+                }}
+              >
+                <span>
+                  <BiLogOut />
+                </span>
+                <span>Logout</span>
+              </button>
+            </aside>
+          )}
+        </div>
       </div>
     </header>
   )
