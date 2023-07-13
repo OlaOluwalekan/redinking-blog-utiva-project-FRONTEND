@@ -1,0 +1,69 @@
+.main {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.main > h2 {
+  color: var(--purpleBlue);
+  width: fit-content;
+  margin: 10px auto;
+}
+
+.main > form {
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: var(--dullRed);
+  padding: 20px 10px;
+}
+
+.main > form.dark {
+  background-color: var(--darkPurpleBlue);
+  color: var(--greyishWhite);
+}
+
+.main > form > section > div {
+  width: 100%;
+}
+
+.main > form > section > div > label {
+  font-size: 13px;
+  color: var(--mainBlack);
+}
+
+.main > form.dark {
+  background-color: var(--darkPurpleBlue);
+  color: var(--greyishWhite);
+}
+
+.main > form.dark label {
+  color: var(--greyishWhite);
+}
+
+/* INPUT FIELDS */
+.main > form > section > div > input {
+  padding: 5px 10px;
+  width: 100%;
+  border: none;
+  margin: 5px 0;
+}
+
+.main > form > section > div > input:focus {
+  outline: 2px solid var(--purpleBlue);
+}
+
+.main > form > button {
+  cursor: pointer;
+  border: none;
+  padding: 5px 20px;
+  background-color: var(--purpleBlue);
+  color: white;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.main > form > p {
+  text-align: center;
+  font-size: 15px;
+}

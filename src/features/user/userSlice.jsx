@@ -6,6 +6,7 @@ import {
   registerUserThunk,
   sendVerificationEmailThunk,
   updateUserThunk,
+  loginUserThunk,
 } from './userThunk'
 import {
   addUserToLocalStorage,
@@ -19,6 +20,7 @@ const initialState = {
   navIsOpen: false,
   isLoading: false,
   userMenuIsOpen: false,
+  currentStep: 1,
 }
 
 export const registerUser = createAsyncThunk(
@@ -68,6 +70,13 @@ export const checkUsername = createAsyncThunk(
   }
 )
 
+export const loginUser = createAsyncThunk(
+  'user/loginUser',
+  async (payload, thunkAPI) => {
+    return loginUserThunk('/auth/login', payload, thunkAPI)
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -87,6 +96,10 @@ const userSlice = createSlice({
     logOut: (state) => {
       state.user = null
       removeUserFromLocalStorage()
+    },
+    setCurrentStep: (state, { payload }) => {
+      console.log(payload)
+      state.currentStep = payload
     },
   },
   extraReducers: (builder) => {
@@ -149,10 +162,28 @@ const userSlice = createSlice({
         state.isLoading = false
         console.log(payload)
       })
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(loginUser.fulfilled, (state, { payload }) => {
+        state.user = payload
+        state.isLoading = false
+        addUserToLocalStorage(payload)
+      })
+      .addCase(loginUser.rejected, (state, { payload }) => {
+        state.isLoading = false
+        console.log(payload)
+      })
   },
 })
 
-export const { openNav, closeNav, toggleDarkMode, toggleUserMenu, logOut } =
-  userSlice.actions
+export const {
+  openNav,
+  closeNav,
+  toggleDarkMode,
+  toggleUserMenu,
+  logOut,
+  setCurrentStep,
+} = userSlice.actions
 
 export default userSlice.reducer

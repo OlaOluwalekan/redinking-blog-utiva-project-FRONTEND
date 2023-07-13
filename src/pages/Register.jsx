@@ -9,12 +9,13 @@ import {
   confirmCode,
   registerUser,
   sendVerificationEmail,
+  setCurrentStep,
   updateUser,
 } from '../features/user/userSlice'
 import { getUserFromLocalStorage } from '../utils/localStorage'
 
 const Register = () => {
-  const [currentStep, setCurrentStep] = useState(1)
+  // const [currentStep, setCurrentStep] = useState(1)
   const [values, setValues] = useState({
     firstName: '',
     lastName: '',
@@ -26,7 +27,7 @@ const Register = () => {
   const [selectedInterests, setSelectedInterests] = useState([])
   const [count, setCount] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
-  const { darkMode, user } = useSelector((store) => store.user)
+  const { darkMode, user, currentStep } = useSelector((store) => store.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -53,7 +54,8 @@ const Register = () => {
         payload: { user },
       } = await dispatch(registerUser(values))
       if (user) {
-        setCurrentStep(2)
+        // setCurrentStep(2)
+        dispatch(setCurrentStep(2))
         setCount(15)
         setIsRunning(true)
       }
@@ -66,7 +68,8 @@ const Register = () => {
         payload: { user },
       } = await dispatch(confirmCode({ verificationCode }))
       if (user) {
-        setCurrentStep(3)
+        // setCurrentStep(3)
+        dispatch(setCurrentStep(3))
       }
     } else {
       await dispatch(
@@ -75,7 +78,8 @@ const Register = () => {
           data: { interests: selectedInterests },
         })
       )
-      setCurrentStep(4)
+      // setCurrentStep(4)
+      dispatch(setCurrentStep(4))
     }
   }
 

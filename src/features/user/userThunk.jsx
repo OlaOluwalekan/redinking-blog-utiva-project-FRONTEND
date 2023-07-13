@@ -63,3 +63,13 @@ export const checkUsernameThunk = async (url, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data.message)
   }
 }
+
+export const loginUserThunk = async (url, payload, thunkAPI) => {
+  try {
+    const { data } = await customFetch.post(url, payload)
+    console.log(data)
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message)
+  }
+}
