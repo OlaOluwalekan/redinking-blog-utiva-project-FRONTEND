@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard'
 import Write from './pages/Write'
 import Error from './pages/Error'
 import { useSelector } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   const { darkMode } = useSelector((store) => store.user)
@@ -27,6 +28,12 @@ const App = () => {
             <Route path='*' element={<Error />} />
           </Route>
         </Routes>
+        <ToastContainer
+          position='top-center'
+          theme={darkMode ? 'dark' : 'light'}
+          pauseOnHover={false}
+          autoClose={2000}
+        />
       </BrowserRouter>
     </main>
   )

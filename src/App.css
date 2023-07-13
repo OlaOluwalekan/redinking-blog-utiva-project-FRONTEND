@@ -30,3 +30,8 @@ main.light {
 main.dark {
   background-color: var(--mainBlack);
 }
+
+.loading {
+  /* background-color: yellow; */
+  margin: auto;
+}

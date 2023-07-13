@@ -13,6 +13,7 @@ import {
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
 } from '../../utils/localStorage'
+import { toast } from 'react-toastify'
 
 const initialState = {
   darkMode: false,
@@ -111,10 +112,11 @@ const userSlice = createSlice({
         state.user = payload
         state.isLoading = false
         addUserToLocalStorage(payload)
+        toast.success('Registration Successful')
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false
-        console.log(payload)
+        toast.error(payload)
       })
       .addCase(confirmCode.pending, (state) => {
         state.isLoading = true
@@ -123,10 +125,11 @@ const userSlice = createSlice({
         state.user = payload
         state.isLoading = false
         addUserToLocalStorage(payload)
+        toast.success('Email Verified')
       })
       .addCase(confirmCode.rejected, (state, { payload }) => {
         state.isLoading = false
-        console.log(payload)
+        toast.error(payload)
       })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true
@@ -135,10 +138,11 @@ const userSlice = createSlice({
         state.user = payload
         state.isLoading = false
         addUserToLocalStorage(payload)
+        toast.success('Updated successfully')
       })
       .addCase(updateUser.rejected, (state, { payload }) => {
         state.isLoading = false
-        console.log(payload)
+        toast.error(payload)
       })
       .addCase(sendVerificationEmail.pending, (state) => {
         state.isLoading = true
@@ -147,10 +151,11 @@ const userSlice = createSlice({
         state.user = payload
         state.isLoading = false
         addUserToLocalStorage(payload)
+        toast.success('verification code sent')
       })
       .addCase(sendVerificationEmail.rejected, (state, { payload }) => {
         state.isLoading = false
-        console.log(payload)
+        toast.error(payload)
       })
       .addCase(checkUsername.pending, (state) => {
         state.isLoading = true
@@ -169,10 +174,11 @@ const userSlice = createSlice({
         state.user = payload
         state.isLoading = false
         addUserToLocalStorage(payload)
+        toast.success('Login successful')
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false
-        console.log(payload)
+        toast.error(payload)
       })
   },
 })

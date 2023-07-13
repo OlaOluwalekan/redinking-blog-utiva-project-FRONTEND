@@ -14,6 +14,7 @@ import {
   toggleUserMenu,
 } from '../features/user/userSlice'
 import UserMenuItems from './UserMenuItems'
+import { toast } from 'react-toastify'
 
 const Navbar = () => {
   const { navIsOpen, darkMode, user, userMenuIsOpen } = useSelector(
@@ -101,6 +102,7 @@ const Navbar = () => {
               <hr />
               <button
                 onClick={() => {
+                  toast.success('logging you out...')
                   dispatch(toggleUserMenu())
                   setTimeout(() => {
                     dispatch(logOut())

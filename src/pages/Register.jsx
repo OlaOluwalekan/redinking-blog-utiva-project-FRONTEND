@@ -13,6 +13,9 @@ import {
   updateUser,
 } from '../features/user/userSlice'
 import { getUserFromLocalStorage } from '../utils/localStorage'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import ReactLoading from 'react-loading'
 
 const Register = () => {
   // const [currentStep, setCurrentStep] = useState(1)
@@ -27,7 +30,9 @@ const Register = () => {
   const [selectedInterests, setSelectedInterests] = useState([])
   const [count, setCount] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
-  const { darkMode, user, currentStep } = useSelector((store) => store.user)
+  const { darkMode, user, currentStep, isLoading } = useSelector(
+    (store) => store.user
+  )
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -47,21 +52,20 @@ const Register = () => {
     if (currentStep === 1) {
       const { firstName, username, email, password } = values
       if (!firstName || !username || !email || !password) {
-        console.log('please fill all required fields')
+        toast.error('please fill all required fields')
         return
       }
       const {
         payload: { user },
       } = await dispatch(registerUser(values))
       if (user) {
-        // setCurrentStep(2)
         dispatch(setCurrentStep(2))
         setCount(15)
         setIsRunning(true)
       }
     } else if (currentStep === 2) {
       if (!verificationCode) {
-        console.log('input code sent to your mail')
+        toast.error('input code sent to your mail')
         return
       }
       const {
@@ -104,6 +108,8 @@ const Register = () => {
       )
       setCount(15)
       setIsRunning(true)
+    } else {
+      dispatch(setCurrentStep(4))
     }
   }
 
@@ -151,13 +157,27 @@ const Register = () => {
           )}
           <button
             type='submit'
-            style={{ width: currentStep === 1 ? '100%' : 'unset' }}
+            style={{
+              width: currentStep === 1 ? '100%' : 'unset',
+              cursor: isLoading ? 'not-allowed' : 'pointer',
+              opacity: isLoading ? 0.5 : 1,
+            }}
+            disabled={isLoading}
           >
-            {currentStep === 1
-              ? 'Register'
-              : currentStep === 2
-              ? 'Verify'
-              : 'Finish'}
+            {isLoading ? (
+              <ReactLoading
+                type='spin'
+                height={25}
+                width={25}
+                className='loading'
+              />
+            ) : currentStep === 1 ? (
+              'Register'
+            ) : currentStep === 2 ? (
+              'Verify'
+            ) : (
+              'Finish'
+            )}
           </button>
         </article>
         {currentStep === 1 && (
