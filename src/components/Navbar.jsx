@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from '../css/navbar.module.css'
 import { FaBars, FaMoon, FaSun, FaTimes, FaUserCircle } from 'react-icons/fa'
 import { ImBookmarks, ImProfile } from 'react-icons/im'
@@ -20,6 +20,7 @@ const Navbar = () => {
     (store) => store.user
   )
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   return (
     <header className={styles.main}>
@@ -103,6 +104,7 @@ const Navbar = () => {
                   dispatch(toggleUserMenu())
                   setTimeout(() => {
                     dispatch(logOut())
+                    navigate('/')
                   }, 1000)
                 }}
               >

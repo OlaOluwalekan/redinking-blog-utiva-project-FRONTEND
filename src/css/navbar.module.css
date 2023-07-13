@@ -303,4 +303,8 @@
     color: var(--purpleBlue);
     text-decoration: underline;
   }
+
+  .main > div > div > div {
+    z-index: 100;
+  }
 }
