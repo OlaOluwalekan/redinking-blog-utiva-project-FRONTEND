@@ -1,0 +1,120 @@
+.main {
+  padding: 30px 10px;
+}
+
+.main > div {
+  width: 100%;
+}
+
+.main.dark {
+  color: var(--mainWhite);
+}
+
+.main > div > section > section {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.main > div > section > p:first-of-type {
+  font-size: 12px;
+  color: var(--greyishWhite);
+  background-color: var(--purpleBlue);
+  display: inline;
+  padding: 0 10px;
+}
+
+.main > div > section > section > img {
+  width: 60px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+}
+
+.main > div > section > section > article > a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--purpleBlue);
+}
+
+.main > div > section > section > article > p:first-of-type > span {
+  padding: 2px 4px;
+  font-size: 14px;
+  background-color: var(--greyishWhite);
+  margin: 0 2px;
+  border-radius: 3px;
+}
+
+.main > div > section > section > article > p:nth-of-type(2) {
+  font-size: 12px;
+  color: var(--dullRed);
+}
+
+.main > div > section > img {
+  width: 100%;
+}
+.main > div > section > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 15px;
+  margin-top: 30px;
+}
+
+.main > div > section > div > article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.main > div > section > div > article > span {
+  display: flex;
+  justify-content: center;
+}
+
+.main > div > section > div > article:nth-of-type(1) > span:first-of-type {
+  width: 30px;
+  aspect-ratio: 1;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.main > div > section > div > article:nth-of-type(1) > span {
+  cursor: pointer;
+}
+
+.main > div > section > div > article:nth-of-type(1) > span:last-of-type:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.main
+  > div
+  > section
+  > div
+  > article:nth-of-type(1)
+  > span:first-of-type:hover {
+  background-color: var(--greyishWhite);
+}
+
+.main > div > section > div > article:nth-of-type(2) {
+  padding: 0 15px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.main > div > section > div > article:nth-of-type(2):hover {
+  background-color: var(--greyishWhite);
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}

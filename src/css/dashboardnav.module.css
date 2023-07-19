@@ -1,0 +1,9 @@
+.main {
+  margin-top: 20px;
+  /* display: flex; */
+}
+
+.main > a {
+  padding: 5px 20px;
+  text-decoration: none;
+}

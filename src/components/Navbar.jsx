@@ -88,7 +88,11 @@ const Navbar = () => {
           )}
           {userMenuIsOpen && (
             <aside className={darkMode ? styles.dark : styles.light}>
-              <UserMenuItems path='/' text='Profile' icon={<ImProfile />} />
+              <UserMenuItems
+                path={`/${user.user.username}`}
+                text='Profile'
+                icon={<ImProfile />}
+              />
               <UserMenuItems path='/' text='Bookmarks' icon={<ImBookmarks />} />
               <UserMenuItems path='/' text='My Posts' icon={<TfiWrite />} />
               <hr />

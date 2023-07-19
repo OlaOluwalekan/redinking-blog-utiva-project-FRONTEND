@@ -5,6 +5,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  /* scrollbar-width: 0; */
 }
 
 :root {
@@ -21,6 +22,8 @@
 
 .main {
   min-height: 100vh;
+  overflow-x: hidden;
+  /* scrollbar-width: 0; */
 }
 
 main.light {
@@ -32,6 +35,5 @@ main.dark {
 }
 
 .loading {
-  /* background-color: yellow; */
   margin: auto;
 }
