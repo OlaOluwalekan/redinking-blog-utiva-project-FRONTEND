@@ -1,5 +1,13 @@
 .main {
   width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: var(--mainWhite);
+  z-index: 100;
+}
+
+.main.dark {
+  background-color: var(--darkPurpleBlue);
 }
 
 /* NAV CENTER STYLES */
@@ -22,6 +30,7 @@
   border-radius: 5px;
   margin-right: 20px;
   cursor: pointer;
+  z-index: 30;
 }
 
 /* LOGO STYLES */
@@ -48,7 +57,7 @@
   display: flex;
   flex-direction: column;
   transition: var(--midTransition);
-  z-index: 20;
+  z-index: 35;
 }
 
 .main > div > nav.open {
@@ -113,7 +122,7 @@
   padding: 7px;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 20;
+  z-index: 30;
 }
 
 .main > div > nav.dark > span {
@@ -143,11 +152,13 @@
   border: 2px solid var(--purpleBlue);
   border-radius: 50%;
   transition: var(--midTransition);
-  z-index: 30;
+  z-index: 120;
+  /* z-index: inherit; */
 }
 
 .main > div > div > div {
   margin-left: 10px;
+  z-index: 40;
 }
 
 .main > div > div > div > span {

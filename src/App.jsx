@@ -15,6 +15,7 @@ import Bookmarks from './pages/dashboard/Bookmarks'
 import Posts from './pages/dashboard/Posts'
 import ProtectedRoute from './pages/ProtectedRoute'
 import PostDetails from './pages/PostDetails'
+import View from './pages/View'
 
 const App = () => {
   const { darkMode } = useSelector((store) => store.user)
@@ -40,11 +41,20 @@ const App = () => {
               <Route path='bookmarks' element={<Bookmarks />} />
               <Route path='posts' element={<Posts />} />
             </Route>
-            <Route path='write' element={<Write />} />
+            <Route
+              path='write'
+              element={
+                <ProtectedRoute>
+                  <Write />
+                </ProtectedRoute>
+              }
+            />
             <Route path='posts/:postSlug' element={<PostDetails />} />
+            <Route path='view/:creator' element={<View />} />
             <Route path='*' element={<Error />} />
           </Route>
         </Routes>
+
         <ToastContainer
           position='top-center'
           theme={darkMode ? 'dark' : 'light'}

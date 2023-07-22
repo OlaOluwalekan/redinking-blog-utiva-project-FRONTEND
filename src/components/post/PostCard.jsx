@@ -4,7 +4,14 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import moment from 'moment'
 import { FaComment, FaThumbsUp } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { likePost } from '../../features/single-post/singlePostSlice'
+import {
+  likePost,
+  toggleCommentTab,
+  toggleTab,
+} from '../../features/single-post/singlePostSlice'
+import styles from '../../css/post.module.css'
+import PostActions from './PostActions'
+import { handleLike } from '../../utils/actions'
 
 const PostCard = ({
   _id,
@@ -17,17 +24,17 @@ const PostCard = ({
   image,
   content,
   likes,
-  comments,
 }) => {
   const [creator, setCreator] = useState(null)
   const [loading, setLoading] = useState(false)
   const createdDate = moment(createdAt).format('MMMM DD, YYYY')
   const updatedDate = moment(updatedAt).format('MMMM DD, YYYY')
   const { user } = useSelector((store) => store.user)
+  const { comments, commentsIsLoading } = useSelector(
+    (store) => store.singlePost
+  )
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  // const [liked, setLiked] = useState(false)
 
   const viewUser = async () => {
     try {
@@ -44,31 +51,16 @@ const PostCard = ({
     viewUser()
   }, [])
 
-  const handleLike = () => {
-    if (!user) {
-      navigate('/auth/login')
-      return
-    }
-    let newLikes
-    if (likes.includes(user.user._id)) {
-      newLikes = likes.filter((like) => {
-        return like !== user.user._id
-      })
-    } else {
-      newLikes = [...likes, user.user._id]
-    }
-    dispatch(likePost({ postId: _id, likes: newLikes }))
-  }
-  console.log(likes)
-
   return (
-    <section>
+    <section className={styles['post-card']}>
       <h2>{title}</h2>
       <p>{readTime} read</p>
       <section>
         <img src={loading ? '' : creator?.profileImage} alt='photo' />
         <article>
-          <Link>{loading ? '' : creator?.username}</Link>
+          <Link to={`/view/${creator?.username}`}>
+            {loading ? '' : creator?.username}
+          </Link>
           <p>
             {tags.map((tag, i) => {
               return <span key={i}>{tag}</span>
@@ -82,27 +74,13 @@ const PostCard = ({
       </section>
       <img src={image} alt={title} />
       <article>{content}</article>
-      <div>
-        <article>
-          <span
-            onClick={handleLike}
-            style={{
-              color: likes.includes(user?.user._id)
-                ? 'var(--purpleBlue)'
-                : 'unset',
-            }}
-          >
-            <FaThumbsUp />
-          </span>
-          <span>{likes.length} Likes</span>
-        </article>
-        <article>
-          <span>
-            <FaComment />
-          </span>
-          <span>{comments.length} Comments</span>
-        </article>
-      </div>
+      <PostActions
+        likes={likes}
+        handleLike={() => handleLike(user, likes, _id, dispatch, navigate)}
+        user={user}
+        commentsIsLoading={commentsIsLoading}
+        comments={comments}
+      />
     </section>
   )
 }

@@ -1,23 +1,24 @@
 .main {
   padding: 30px 10px;
+  width: 100vw;
 }
 
 .main > div {
-  width: 100%;
+  width: 100vw;
 }
 
 .main.dark {
   color: var(--mainWhite);
 }
 
-.main > div > section > section {
+.post-card > section {
   margin: 10px 0;
   display: flex;
   align-items: center;
   column-gap: 20px;
 }
 
-.main > div > section > p:first-of-type {
+.post-card > p:first-of-type {
   font-size: 12px;
   color: var(--greyishWhite);
   background-color: var(--purpleBlue);
@@ -25,7 +26,7 @@
   padding: 0 10px;
 }
 
-.main > div > section > section > img {
+.post-card > section > img {
   width: 60px;
   aspect-ratio: 1;
   object-fit: cover;
@@ -33,13 +34,13 @@
   border-radius: 50%;
 }
 
-.main > div > section > section > article > a {
+.post-card > section > article > a {
   text-decoration: none;
   font-weight: 600;
   color: var(--purpleBlue);
 }
 
-.main > div > section > section > article > p:first-of-type > span {
+.post-card > section > article > p:first-of-type > span {
   padding: 2px 4px;
   font-size: 14px;
   background-color: var(--greyishWhite);
@@ -47,15 +48,15 @@
   border-radius: 3px;
 }
 
-.main > div > section > section > article > p:nth-of-type(2) {
+.post-card > section > article > p:nth-of-type(2) {
   font-size: 12px;
   color: var(--dullRed);
 }
 
-.main > div > section > img {
+.post-card > img {
   width: 100%;
 }
-.main > div > section > div {
+.post-card > div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,30 +64,30 @@
   margin-top: 30px;
 }
 
-.main > div > section > div > article {
+.post-card > div > article {
   display: flex;
   justify-content: center;
   align-items: center;
   column-gap: 5px;
 }
 
-.main > div > section > div > article > span {
+.post-card > div > article > span {
   display: flex;
   justify-content: center;
 }
 
-.main > div > section > div > article:nth-of-type(1) > span:first-of-type {
+.post-card > div > article:nth-of-type(1) > span:first-of-type {
   width: 30px;
   aspect-ratio: 1;
   align-items: center;
   border-radius: 50%;
 }
 
-.main > div > section > div > article:nth-of-type(1) > span {
+.post-card > div > article:nth-of-type(1) > span {
   cursor: pointer;
 }
 
-.main > div > section > div > article:nth-of-type(1) > span:last-of-type:hover {
+.post-card > div > article:nth-of-type(1) > span:last-of-type:hover {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
@@ -100,15 +101,201 @@
   background-color: var(--greyishWhite);
 }
 
-.main > div > section > div > article:nth-of-type(2) {
+.post-card > div > article:nth-of-type(2) {
   padding: 0 15px;
   cursor: pointer;
   border-radius: 20px;
 }
 
-.main > div > section > div > article:nth-of-type(2):hover {
+.post-card > div > article:nth-of-type(2):hover {
   background-color: var(--greyishWhite);
 }
+
+/* COMMENTS AND LIKES OPEN */
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  /* background-color: black; */
+  background-color: #ffffff8e;
+  /* background-color: #00000096; */
+  position: fixed;
+  top: 0;
+  display: none;
+  z-index: 200;
+}
+
+.overlay.open {
+  display: block;
+}
+
+.comments-tab {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--mainWhite);
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid var(--purpleBlue); */
+  transition: var(--midTransition);
+  height: 0;
+  z-index: 20;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 2px 5px black;
+  overflow-y: scroll;
+}
+
+.comments-tab::-webkit-scrollbar {
+  width: 5px;
+}
+
+.comments-tab::-webkit-scrollbar-thumb {
+  background-color: var(--purpleBlue);
+  border-radius: 2px;
+}
+
+.main.dark .comments-tab {
+  background-color: var(--darkPurpleBlue);
+}
+
+.comments-tab.open {
+  height: 400px;
+}
+
+.comments-tab > header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  background-color: var(--mainWhite);
+}
+
+.comments-tab > header > p {
+  text-align: center;
+  padding: 20px 0 10px 0;
+  cursor: pointer;
+}
+
+.comments-tab > header > p > span {
+  display: inline-flex;
+  background-color: var(--purpleBlue);
+  color: var(--mainWhite);
+  width: 20px;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+/* LIKES STYLES */
+.like-list {
+  padding: 40px 0;
+  margin-top: 40px;
+}
+
+.like-list > article {
+  display: flex;
+  column-gap: 10px;
+  margin: 10px 0;
+  padding: 0 20px;
+}
+
+.like-list > article > img {
+  width: 35px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+}
+
+/* COMMENTS STYLES */
+.comment-list {
+  padding: 20px 0;
+}
+
+.comment-list > form {
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--purpleBlue);
+  margin-top: 50px;
+}
+
+.comment-list > form > article {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+}
+
+.comment-list > form > article > button {
+  padding: 5px 15px;
+  border: none;
+  background-color: var(--purpleBlue);
+  color: white;
+  cursor: pointer;
+}
+
+.comment-list > section > div {
+  padding: 5px 15px;
+  border-bottom: 1px solid var(--darkPurpleBlue);
+}
+
+.main.dark .comment-list > section > div {
+  border-bottom: 1px solid var(--ashBlack);
+}
+
+.comment-list > section > div > article {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.comment-list > section > div > article > img {
+  width: 40px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+}
+
+.comment-list > section > div > article > article > a {
+  color: var(--purpleBlue);
+  text-decoration: none;
+}
+
+.comment-list > section > div > article > article > p {
+  font-size: 12px;
+  color: var(--dullRed);
+}
+
+.comment-list > section > div > .comment {
+  margin: 10px 0;
+  color: var(--ashBlack);
+}
+
+.main.dark .comment {
+  color: var(--mainWhite);
+}
+
+/* COMMENTS LIKE */
+.comment-list > section > div > div {
+  display: flex;
+}
+
+.comment-list > section > div > div > article {
+  width: fit-content;
+  padding: 0 10px;
+  border-radius: 20px;
+}
+
+.comment-list > section > div > div > article:hover {
+  background-color: var(--greyishWhite);
+  cursor: pointer;
+}
+
+.comment-list > section > div > div > article > span:first-of-type {
+  margin-right: 10px;
+}
+
+/* COMMENTS REPLY */
 
 /* DESKTOP SCREEN */
 @media screen and (min-width: 700px) {
@@ -116,5 +303,19 @@
     width: 80%;
     max-width: 1100px;
     margin: 0 auto;
+  }
+  .comments-tab {
+    top: 0;
+    right: -500px;
+    left: unset;
+    width: 50%;
+    max-width: 500px;
+    height: 100vh;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 2px 5px black;
+  }
+  .comments-tab.open {
+    height: 100vh;
+    right: 0;
   }
 }

@@ -24,7 +24,9 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   return (
-    <header className={styles.main}>
+    <header
+      className={darkMode ? `${styles.main} ${styles.dark}` : `${styles.main}`}
+    >
       <div>
         {/*OPEN NAV BUTTON  */}
         <span onClick={() => dispatch(openNav())}>
