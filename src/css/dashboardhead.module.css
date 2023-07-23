@@ -1,0 +1,86 @@
+.main {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main.dark {
+  color: var(--mainWhite);
+}
+
+.main > article > img {
+  width: 150px;
+}
+
+.main > article {
+  position: relative;
+  width: fit-content;
+}
+
+.main > article:hover > label > span {
+  display: flex;
+}
+
+.main > article:hover > img {
+  opacity: 0.5;
+}
+
+.main > article > input {
+  display: none;
+}
+
+.main > article > label > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  aspect-ratio: 1;
+  background-color: var(--purpleBlue);
+  color: var(--mainWhite);
+  font-size: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.main > div > h2 {
+  color: var(--purpleBlue);
+  text-align: center;
+}
+
+.main > div > article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.main > div > article > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--dullRed);
+}
+
+.main > div > article > a {
+  text-decoration: none;
+  color: var(--mainBlack);
+}
+
+@media screen and (min-width: 700px) {
+  .main {
+    width: 80%;
+    max-width: 1100px;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 30px;
+  }
+}

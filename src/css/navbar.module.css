@@ -173,6 +173,11 @@
   cursor: pointer;
 }
 
+.main > div > div > div > span > img {
+  width: 100%;
+  border-radius: 50%;
+}
+
 .main > div > div > article.dark {
   color: var(--mainWhite);
   transform: rotate(180deg);

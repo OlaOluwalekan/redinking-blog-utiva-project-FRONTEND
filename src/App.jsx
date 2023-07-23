@@ -13,6 +13,8 @@ import { ToastContainer } from 'react-toastify'
 import SharedDashboard from './pages/dashboard/SharedDashboard'
 import Bookmarks from './pages/dashboard/Bookmarks'
 import Posts from './pages/dashboard/Posts'
+import Followers from './pages/dashboard/Followers'
+import Following from './pages/dashboard/Following'
 import ProtectedRoute from './pages/ProtectedRoute'
 import PostDetails from './pages/PostDetails'
 import View from './pages/View'
@@ -40,6 +42,8 @@ const App = () => {
               <Route index element={<Profile />} />
               <Route path='bookmarks' element={<Bookmarks />} />
               <Route path='posts' element={<Posts />} />
+              <Route path='followers' element={<Followers />} />
+              <Route path='following' element={<Following />} />
             </Route>
             <Route
               path='write'

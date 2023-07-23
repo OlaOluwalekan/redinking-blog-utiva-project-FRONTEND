@@ -12,6 +12,7 @@ import htmlParser from 'html-react-parser'
 const PostCard = ({
   _id,
   title,
+  subTitle,
   createdBy,
   tags,
   readTime,
@@ -50,6 +51,11 @@ const PostCard = ({
   return (
     <section className={styles['post-card']}>
       <h2>{htmlParser(title)}</h2>
+      {subTitle && (
+        <article className={styles['sub-title']}>
+          {htmlParser(subTitle)}
+        </article>
+      )}
       <p>{readTime} read</p>
       <section>
         <img src={loading ? '' : creator?.profileImage} alt='photo' />
@@ -68,8 +74,10 @@ const PostCard = ({
           </p>
         </article>
       </section>
-      <img src={image} alt={title} />
-      <article>{htmlParser(content)}</article>
+      <img src={image} alt={'post image'} />
+      <article className={styles['post-content']}>
+        {htmlParser(content)}
+      </article>
       <PostActions
         likes={likes}
         handleLike={() => handleLike(user, likes, _id, dispatch, navigate)}

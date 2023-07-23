@@ -84,19 +84,28 @@ const Navbar = () => {
           {user && (
             <div className={darkMode ? styles.dark : styles.light}>
               <span onClick={() => dispatch(toggleUserMenu())}>
-                <FaUserCircle />
+                {/* <FaUserCircle /> */}
+                <img src={user.user.profileImage} alt='profile image' />
               </span>
             </div>
           )}
           {userMenuIsOpen && (
             <aside className={darkMode ? styles.dark : styles.light}>
               <UserMenuItems
-                path={`/${user.user.username}`}
+                path={`/${user.user.username}/`}
                 text='Profile'
                 icon={<ImProfile />}
               />
-              <UserMenuItems path='/' text='Bookmarks' icon={<ImBookmarks />} />
-              <UserMenuItems path='/' text='My Posts' icon={<TfiWrite />} />
+              <UserMenuItems
+                path={`/${user.user.username}/bookmarks`}
+                text='Bookmarks'
+                icon={<ImBookmarks />}
+              />
+              <UserMenuItems
+                path={`/${user.user.username}/posts`}
+                text='My Posts'
+                icon={<TfiWrite />}
+              />
               <hr />
               <UserMenuItems path='/' text='Settings' icon={<TfiSettings />} />
               <UserMenuItems path='/' text='Help' icon={<TfiHelpAlt />} />

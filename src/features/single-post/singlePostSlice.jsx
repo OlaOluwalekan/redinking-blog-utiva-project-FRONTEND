@@ -137,6 +137,7 @@ const singlePostSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state) => {
         state.commentsIsLoading = false
+        toast.success('Post created successfully')
       })
       .addCase(createPost.rejected, (state, { payload }) => {
         state.commentsIsLoading = false

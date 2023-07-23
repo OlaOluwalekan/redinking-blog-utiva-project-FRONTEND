@@ -7,6 +7,7 @@ import TagsSelect from '../components/write/TagsSelect'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { createPost } from '../features/single-post/singlePostSlice'
+import ReactLoading from 'react-loading'
 
 const Write = () => {
   const [title, setTitle] = useState('')
@@ -40,10 +41,10 @@ const Write = () => {
       toast.error(`Please provide a title for your post`)
       return
     }
-    // if (!postImage) {
-    //   toast.error(`You need to add an image for your post`)
-    //   return
-    // }
+    if (!postImage) {
+      toast.error(`You need to add an image for your post`)
+      return
+    }
     if (tags.length < 2) {
       toast.error(`You need to add at least 2 tags`)
       return
@@ -53,6 +54,11 @@ const Write = () => {
       return
     }
     dispatch(createPost(value))
+    setTitle('')
+    setSubTitle('')
+    setContent('')
+    setPostImage('')
+    setTags([])
   }
 
   const handleImageUpload = async (e) => {
@@ -135,7 +141,16 @@ const Write = () => {
           </article>
           <section>
             <button type='submit' disabled={commentIsLoading}>
-              Create Post
+              {commentIsLoading ? (
+                <ReactLoading
+                  type='spin'
+                  height={25}
+                  width={25}
+                  className='loading'
+                />
+              ) : (
+                'Create Post'
+              )}
             </button>
           </section>
         </form>

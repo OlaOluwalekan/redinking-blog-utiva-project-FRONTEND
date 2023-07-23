@@ -4,7 +4,8 @@
 }
 
 .main > div {
-  width: 100vw;
+  width: 90%;
+  margin: auto;
 }
 
 .main.dark {
@@ -56,6 +57,11 @@
 .post-card > img {
   width: 100%;
 }
+
+.post-card > .sub-title {
+  font-size: 14px;
+}
+
 .post-card > div {
   display: flex;
   justify-content: center;
@@ -90,6 +96,13 @@
 .post-card > div > article:nth-of-type(1) > span:last-of-type:hover {
   text-decoration: underline;
   text-underline-offset: 5px;
+}
+
+.post-card > .post-content img {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  text-align: justify;
 }
 
 .main

@@ -8,6 +8,14 @@
   /* scrollbar-width: 0; */
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--purpleBlue);
+}
+
 :root {
   --purpleBlue: #6446ff;
   --dullRed: #e63264;
