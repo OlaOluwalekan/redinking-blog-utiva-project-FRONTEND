@@ -47,7 +47,19 @@ export const createCommentThunk = async (url, content, thunkAPI) => {
         },
       }
     )
-    console.log(data)
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message)
+  }
+}
+
+export const createPostThunk = async (url, value, thunkAPI) => {
+  try {
+    const { data } = await customFetch.post(url, value, {
+      headers: {
+        authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+      },
+    })
     return data
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.message)

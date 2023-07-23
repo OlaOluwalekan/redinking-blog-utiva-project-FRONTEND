@@ -1,0 +1,163 @@
+.main {
+  width: 100%;
+  padding-bottom: 70px;
+}
+
+.main.dark {
+  color: var(--mainWhite);
+}
+
+.main > div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main > div > h2 {
+  color: var(--purpleBlue);
+  margin-top: 30px;
+}
+
+.main > div > form > article {
+  margin: 20px 0;
+  position: relative;
+}
+
+.main > div > form > article > label > span {
+  color: var(--dullRed);
+}
+
+.main > div > form > article:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+}
+
+.main > div > form > article:nth-of-type(1) > input {
+  font-size: 30px;
+  padding: 10px;
+  font-weight: 900;
+}
+
+.main > div > form > article:nth-of-type(3) > img {
+  width: 100%;
+}
+
+.main > div > form > article:nth-of-type(3):hover > label > span {
+  display: flex;
+}
+
+.main > div > form > article:nth-of-type(3):hover > img {
+  opacity: 0.5;
+}
+
+.main > div > form > article:nth-of-type(3) > label > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  aspect-ratio: 1;
+  background-color: var(--purpleBlue);
+  color: var(--mainWhite);
+  font-size: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.main > div > form > article:nth-of-type(4) {
+  height: 350px;
+}
+
+.main > div > form > article:nth-of-type(4) > :last-child {
+  height: 70%;
+}
+
+/* TAGS SELECTION */
+.tags-select {
+  width: 100%;
+  background-color: var(--dullRed);
+  padding: 10px;
+}
+
+.main.dark .tags-select {
+  background-color: var(--darkPurpleBlue);
+}
+
+.tags-select > div > label {
+  font-size: 14px;
+}
+
+.tags-select > div > input {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.tags-select > div:nth-of-type(2) {
+  background-color: var(--mainWhite);
+  margin: 10px 0;
+  font-size: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 10px;
+  padding: 5px;
+}
+
+.tags-select > div:nth-of-type(2) > article {
+  background-color: var(--purpleBlue);
+  display: flex;
+  padding: 3px;
+  color: var(--mainWhite);
+}
+
+.tags-select > div:nth-of-type(2) > article > span:first-of-type {
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.tags-select > div:last-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 20px;
+}
+
+.tags-select > div:last-of-type > article {
+  background: #6546ff42;
+  padding: 2px 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.tags-select > div:last-of-type > article > input {
+  display: none;
+}
+
+.tags-select > div:last-of-type > article > label {
+  cursor: pointer;
+}
+
+/* BUTTON */
+.main > div > form > section > button {
+  padding: 5px 30px;
+  border: none;
+  background-color: var(--purpleBlue);
+  color: var(--mainWhite);
+  cursor: pointer;
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+  }
+}

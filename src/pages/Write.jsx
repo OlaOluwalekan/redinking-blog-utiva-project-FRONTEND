@@ -1,4 +1,146 @@
+import { useState } from 'react'
+import ReactQuill from 'react-quill'
+import styles from '../css/write.module.css'
+import { FaUpload } from 'react-icons/fa'
+import { convertToBase64 } from '../utils/actions'
+import TagsSelect from '../components/write/TagsSelect'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { createPost } from '../features/single-post/singlePostSlice'
+
 const Write = () => {
-  return <div>Write</div>
+  const [title, setTitle] = useState('')
+  const [subTitle, setSubTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [postImage, setPostImage] = useState('')
+  const [tags, setTags] = useState([])
+  const { darkMode, commentIsLoading } = useSelector((store) => store.user)
+  const dispatch = useDispatch()
+
+  const titleModule = {
+    toolbar: ['bold', 'italic', 'underline', 'strike'],
+  }
+
+  const contentModule = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ script: 'sub' }, { script: 'super' }],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      ['blockquote', 'code-block'],
+      ['image'],
+    ],
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const value = { title, subTitle, content, image: postImage, tags }
+    if (!title) {
+      toast.error(`Please provide a title for your post`)
+      return
+    }
+    // if (!postImage) {
+    //   toast.error(`You need to add an image for your post`)
+    //   return
+    // }
+    if (tags.length < 2) {
+      toast.error(`You need to add at least 2 tags`)
+      return
+    }
+    if (!content) {
+      toast.error(`Your post needs some content`)
+      return
+    }
+    dispatch(createPost(value))
+  }
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]
+    const base64 = await convertToBase64(file)
+    setPostImage(base64)
+  }
+
+  return (
+    <div
+      className={darkMode ? `${styles.main} ${styles.dark}` : `${styles.main}`}
+    >
+      <div>
+        <h2>Create Your Post</h2>
+        <form onSubmit={handleSubmit}>
+          {/* TITLE */}
+          <article>
+            <label htmlFor='title'>
+              Post Title <span>*</span>
+            </label>
+            <input
+              type='text'
+              id='title'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </article>
+
+          {/* TITLE */}
+          <article>
+            <label htmlFor='subtitle'>Post Subtitle</label>
+            <ReactQuill
+              theme='snow'
+              modules={titleModule}
+              id='subtitle'
+              value={subTitle}
+              onChange={setSubTitle}
+            />
+          </article>
+
+          {/* IMAGE UPLOAD */}
+          <article>
+            <img
+              src={
+                postImage
+                  ? postImage
+                  : 'https://res.cloudinary.com/dyyoorpns/image/upload/v1690104992/RedInking/Static%20Images/Post/default-thumbnail.jpg'
+              }
+              alt='default thumbnail'
+            />
+            <label htmlFor='image'>
+              <span>
+                <FaUpload />
+              </span>
+            </label>
+            <input
+              type='file'
+              name='image'
+              id='image'
+              accept='.jpeg, .png, .jpg'
+              style={{ display: 'none' }}
+              onChange={handleImageUpload}
+            />
+          </article>
+
+          <TagsSelect selectedTag={tags} setSelectedTag={setTags} />
+
+          {/* CONTENT */}
+          <article>
+            <label htmlFor='content'>
+              Post Content <span>*</span>
+            </label>
+            <ReactQuill
+              theme='snow'
+              modules={contentModule}
+              id='content'
+              value={content}
+              onChange={setContent}
+            />
+          </article>
+          <section>
+            <button type='submit' disabled={commentIsLoading}>
+              Create Post
+            </button>
+          </section>
+        </form>
+      </div>
+    </div>
+  )
 }
 export default Write

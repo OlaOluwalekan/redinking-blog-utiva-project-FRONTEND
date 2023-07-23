@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   createCommentThunk,
+  createPostThunk,
   getPostBySlugThunk,
   getPostCommentsThunk,
   likeCommentThunk,
   likePostThunk,
 } from './SinglePostThunk'
+import { toast } from 'react-toastify'
 
 const initialState = {
   isLoading: false,
@@ -56,12 +58,18 @@ export const likeComment = createAsyncThunk(
 export const createComment = createAsyncThunk(
   'singlePost/createComment',
   async (payload, thunkAPI) => {
-    console.log(payload)
     return createCommentThunk(
       `comments/create/${payload.id}`,
       payload.content,
       thunkAPI
     )
+  }
+)
+
+export const createPost = createAsyncThunk(
+  'singlePost/createPost',
+  async (payload, thunkAPI) => {
+    return createPostThunk(`post`, payload, thunkAPI)
   }
 )
 
@@ -123,6 +131,16 @@ const singlePostSlice = createSlice({
       .addCase(createComment.rejected, (state, { payload }) => {
         state.commentsIsLoading = false
         console.log(payload)
+      })
+      .addCase(createPost.pending, (state) => {
+        state.commentsIsLoading = true
+      })
+      .addCase(createPost.fulfilled, (state) => {
+        state.commentsIsLoading = false
+      })
+      .addCase(createPost.rejected, (state, { payload }) => {
+        state.commentsIsLoading = false
+        toast.error(payload)
       })
   },
 })

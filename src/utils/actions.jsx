@@ -38,5 +38,17 @@ export const handleLikeComment = (
     newLikes = [...likes, user.user._id]
   }
   dispatch(likeComment({ commentId: _id, postId: postId, likes: newLikes }))
-  // const { data } = customFetch.put(`comments/actions/like/${_id}`, newLikes)
+}
+
+export const convertToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    }
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
 }

@@ -4,14 +4,10 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import moment from 'moment'
 import { FaComment, FaThumbsUp } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  likePost,
-  toggleCommentTab,
-  toggleTab,
-} from '../../features/single-post/singlePostSlice'
 import styles from '../../css/post.module.css'
 import PostActions from './PostActions'
 import { handleLike } from '../../utils/actions'
+import htmlParser from 'html-react-parser'
 
 const PostCard = ({
   _id,
@@ -53,7 +49,7 @@ const PostCard = ({
 
   return (
     <section className={styles['post-card']}>
-      <h2>{title}</h2>
+      <h2>{htmlParser(title)}</h2>
       <p>{readTime} read</p>
       <section>
         <img src={loading ? '' : creator?.profileImage} alt='photo' />
@@ -73,7 +69,7 @@ const PostCard = ({
         </article>
       </section>
       <img src={image} alt={title} />
-      <article>{content}</article>
+      <article>{htmlParser(content)}</article>
       <PostActions
         likes={likes}
         handleLike={() => handleLike(user, likes, _id, dispatch, navigate)}

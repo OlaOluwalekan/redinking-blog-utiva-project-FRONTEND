@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import customFetch from '../../utils/axios'
 import { useEffect, useState } from 'react'
+import HTMLReactParser from 'html-react-parser'
 
 const PopularPostBrief = ({ _id, title, createdBy, image, tags, slug }) => {
   const [creator, setCreator] = useState(null)
@@ -26,7 +27,7 @@ const PopularPostBrief = ({ _id, title, createdBy, image, tags, slug }) => {
       <img src={image} alt={title} />
       <aside></aside>
       <section>
-        <Link to={`/posts/${slug}`}>{title}</Link>
+        <Link to={`/posts/${slug}`}>{HTMLReactParser(title)}</Link>
         <article>
           <img src={loading ? '' : creator?.profileImage} alt='photo' />
           <article>

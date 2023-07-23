@@ -48,7 +48,7 @@ const Navbar = () => {
         >
           {/* LOGO */}
           {navIsOpen && (
-            <Link to='/'>
+            <Link to='/' onClick={() => dispatch(closeNav())}>
               <h2>
                 Red<span>Inking</span>
               </h2>
