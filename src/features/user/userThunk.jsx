@@ -32,6 +32,7 @@ export const updateUserThunk = async (url, payload, thunkAPI) => {
     })
     return data
   } catch (error) {
+    console.log(thunkAPI.getState().user.user.token)
     return thunkAPI.rejectWithValue(error.response.data.message)
   }
 }

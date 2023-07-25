@@ -3,6 +3,14 @@
   /* display: flex; */
 }
 
+.main.dark {
+  color: var(--mainWhite);
+}
+
+.main.dark a {
+  color: var(--mainWhite);
+}
+
 .main > div {
   width: 90%;
   margin: auto;

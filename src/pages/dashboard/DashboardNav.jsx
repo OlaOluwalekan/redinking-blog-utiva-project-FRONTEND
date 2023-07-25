@@ -3,9 +3,11 @@ import styles from '../../css/dashboardnav.module.css'
 import { useSelector } from 'react-redux'
 
 const DashboardNav = () => {
-  const { user } = useSelector((store) => store.user)
+  const { user, darkMode } = useSelector((store) => store.user)
   return (
-    <nav className={styles.main}>
+    <nav
+      className={darkMode ? `${styles.main} ${styles.dark}` : `${styles.main}`}
+    >
       <div>
         <NavLink
           to={`/${user.user.username}/`}

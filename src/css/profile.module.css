@@ -1,0 +1,104 @@
+.main > div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main.dark {
+  color: var(--mainWhite);
+}
+
+.user-update-input {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--greyishWhite);
+}
+
+.user-update-input > label {
+  font-size: 14px;
+  color: var(--purpleBlue);
+}
+
+.user-update-input > div {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+/* INPUTS */
+.user-update-input > div > input {
+  padding: 5px 10px;
+  width: 100%;
+  border: none;
+  background-color: var(--greyishWhite);
+}
+
+.user-update-input > div > input:focus {
+  outline: 1px solid var(--purpleBlue);
+}
+
+.main.dark .user-update-input > div > input {
+  background-color: var(--darkPurpleBlue);
+  color: var(--mainWhite);
+}
+
+/* BUTTONS */
+.user-update-input > div > article {
+  display: flex;
+  column-gap: 10px;
+}
+
+.user-update-input > div > article > button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--purpleBlue);
+}
+
+.user-update-input > div > article > span:first-child {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--purpleBlue);
+}
+
+.user-update-input > div > article > span {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--dullRed);
+}
+
+/* INTERESTS */
+.main > div > section {
+  background-color: var(--dullRed);
+  padding: 10px 5px;
+  margin: 20px auto;
+  max-width: 700px;
+}
+
+.main > div > section > article {
+  text-align: end;
+  margin-top: 20px;
+}
+
+.main > div > section > article > button {
+  background: none;
+  border: none;
+  color: var(--darkPurpleBlue);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 5px;
+}
+
+.main.dark > div > section {
+  background-color: var(--darkPurpleBlue);
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+  }
+}
