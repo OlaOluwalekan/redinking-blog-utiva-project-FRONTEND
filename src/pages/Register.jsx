@@ -78,7 +78,7 @@ const Register = () => {
     } else {
       await dispatch(
         updateUser({
-          id: getUserFromLocalStorage().user._id,
+          // id: getUserFromLocalStorage().user._id,
           data: { interests: selectedInterests },
         })
       )

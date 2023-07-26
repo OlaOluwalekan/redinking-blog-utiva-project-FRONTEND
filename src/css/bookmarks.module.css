@@ -1,0 +1,53 @@
+.main > div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main.dark {
+  color: var(--mainWhite);
+}
+
+.main > div > section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.main > div > article {
+  width: 100%;
+  margin-top: 100px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.main > div > article > p {
+  line-height: 40px;
+}
+
+.main > div > article > p > span {
+  color: var(--purpleBlue);
+}
+
+.main > div > section > section {
+  position: relative;
+}
+
+.main > div > section > section > div > article {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
+
+.main > div > section > section:hover > div > article {
+  display: block;
+}
+
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+  }
+}

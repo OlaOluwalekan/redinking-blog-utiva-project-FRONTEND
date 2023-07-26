@@ -1,5 +1,5 @@
-import { FaComment, FaThumbsUp } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
+import { FaBookmark, FaComment, FaThumbsUp } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   toggleCommentTab,
   toggleTab,
@@ -11,8 +11,10 @@ const PostActions = ({
   user,
   commentsIsLoading,
   comments,
+  handleBookmarkPost,
 }) => {
   const dispatch = useDispatch()
+  const { post } = useSelector((store) => store.singlePost)
 
   return (
     <div>
@@ -46,6 +48,16 @@ const PostActions = ({
           <FaComment />
         </span>
         <span>{commentsIsLoading ? 0 : comments.length} Comments</span>
+      </article>
+      <article
+        onClick={handleBookmarkPost}
+        style={{
+          color: user?.user.bookmarks.includes(post.slug)
+            ? 'var(--purpleBlue)'
+            : 'unset',
+        }}
+      >
+        <FaBookmark />
       </article>
     </div>
   )

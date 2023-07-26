@@ -6,7 +6,7 @@ import { FaComment, FaThumbsUp } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from '../../css/post.module.css'
 import PostActions from './PostActions'
-import { handleLike } from '../../utils/actions'
+import { handleBookmarkPost, handleLike } from '../../utils/actions'
 import htmlParser from 'html-react-parser'
 
 const PostCard = ({
@@ -21,6 +21,7 @@ const PostCard = ({
   image,
   content,
   likes,
+  slug,
 }) => {
   const [creator, setCreator] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -84,6 +85,15 @@ const PostCard = ({
         user={user}
         commentsIsLoading={commentsIsLoading}
         comments={comments}
+        handleBookmarkPost={() =>
+          handleBookmarkPost(
+            user,
+            slug,
+            user?.user.bookmarks,
+            dispatch,
+            navigate
+          )
+        }
       />
     </section>
   )

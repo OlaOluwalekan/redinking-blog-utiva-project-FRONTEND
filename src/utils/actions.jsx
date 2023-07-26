@@ -1,4 +1,6 @@
+import { toast } from 'react-toastify'
 import { likeComment, likePost } from '../features/single-post/singlePostSlice'
+import { bookmarkPost } from '../features/user/userSlice'
 import customFetch from './axios'
 
 export const handleLike = (user, likes, _id, dispatch, navigate) => {
@@ -14,7 +16,32 @@ export const handleLike = (user, likes, _id, dispatch, navigate) => {
   } else {
     newLikes = [...likes, user.user._id]
   }
+  console.log(newLikes)
   dispatch(likePost({ postId: _id, likes: newLikes }))
+}
+
+export const handleBookmarkPost = (
+  user,
+  postId,
+  bookmarks,
+  dispatch,
+  navigate
+) => {
+  if (!user) {
+    navigate('/auth/login')
+    return
+  }
+  let newBookmarks
+  if (bookmarks.includes(postId)) {
+    newBookmarks = bookmarks.filter((bookmark) => {
+      return bookmark !== postId
+    })
+    toast.success('Post removed from bookmarks')
+  } else {
+    newBookmarks = [...bookmarks, postId]
+    toast.success('Post added to bookmarks')
+  }
+  dispatch(bookmarkPost({ data: { bookmarks: newBookmarks } }))
 }
 
 export const handleLikeComment = (

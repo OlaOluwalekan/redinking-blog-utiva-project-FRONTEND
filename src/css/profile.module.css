@@ -91,6 +91,10 @@
   padding: 5px;
 }
 
+.main.dark > div > section > article > button {
+  color: var(--mainWhite);
+}
+
 .main.dark > div > section {
   background-color: var(--darkPurpleBlue);
 }

@@ -44,7 +44,7 @@ const PersonalInfoInput = ({
       focusInput.current.focus()
       return
     }
-    dispatch(updateUser({ id: user?.user._id, data: { [name]: value } }))
+    dispatch(updateUser({ data: { [name]: value } }))
     // toast.success(`${labelText} updated successfully`)
   }
 

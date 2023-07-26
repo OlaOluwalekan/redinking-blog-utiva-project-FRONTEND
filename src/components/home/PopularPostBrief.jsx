@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import customFetch from '../../utils/axios'
 import { useEffect, useState } from 'react'
 import HTMLReactParser from 'html-react-parser'
+import styles from '../../css/home.module.css'
 
 const PopularPostBrief = ({ _id, title, createdBy, image, tags, slug }) => {
   const [creator, setCreator] = useState(null)
@@ -23,7 +24,7 @@ const PopularPostBrief = ({ _id, title, createdBy, image, tags, slug }) => {
   }, [])
 
   return (
-    <div>
+    <div className={styles['popular-brief']}>
       <img src={image} alt={title} />
       <aside></aside>
       <section>
