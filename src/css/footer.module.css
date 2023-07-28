@@ -1,0 +1,52 @@
+.main {
+  width: 100%;
+  margin-top: 70px;
+  background-color: var(--greyishWhite);
+  padding: 80px 0;
+}
+
+.main.dark {
+  color: var(--mainWhite);
+  background-color: var(--darkPurpleBlue);
+}
+
+.main > div {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main > div > a {
+  text-decoration: none;
+  color: var(--dullRed);
+}
+
+.main > div > a > h2 > span {
+  color: var(--purpleBlue);
+}
+
+.main > div > article {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.main > div > article > a {
+  text-decoration: none;
+  color: black;
+}
+
+.main.dark > div > article > a {
+  color: white;
+}
+
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+  }
+}

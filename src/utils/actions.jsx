@@ -1,7 +1,6 @@
 import { toast } from 'react-toastify'
 import { likeComment, likePost } from '../features/single-post/singlePostSlice'
 import { bookmarkPost } from '../features/user/userSlice'
-import customFetch from './axios'
 
 export const handleLike = (user, likes, _id, dispatch, navigate) => {
   if (!user) {
@@ -16,7 +15,6 @@ export const handleLike = (user, likes, _id, dispatch, navigate) => {
   } else {
     newLikes = [...likes, user.user._id]
   }
-  console.log(newLikes)
   dispatch(likePost({ postId: _id, likes: newLikes }))
 }
 

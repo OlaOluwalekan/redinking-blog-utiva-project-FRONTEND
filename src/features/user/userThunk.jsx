@@ -18,7 +18,6 @@ export const confirmCodeThunk = async (url, payload, thunkAPI) => {
     })
     return data
   } catch (error) {
-    console.log(thunkAPI.getState().user.user.codeToken)
     return thunkAPI.rejectWithValue(error.response.data.message)
   }
 }

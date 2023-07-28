@@ -114,6 +114,16 @@
   background-color: var(--greyishWhite);
 }
 
+.post-card > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.post-card > div > article > span > span {
+  display: none;
+}
+
 .post-card > div > article:nth-of-type(2) {
   padding: 0 15px;
   cursor: pointer;
@@ -135,6 +145,42 @@
 }
 
 .post-card > div > article:nth-of-type(3):hover {
+  background-color: var(--greyishWhite);
+}
+
+.post-card > div > article:nth-of-type(4) {
+  border-radius: 20px;
+  position: relative;
+}
+
+.post-card > div > article:nth-of-type(4) > span {
+  padding: 2px 10px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.post-card > div > article:nth-of-type(4) > span:hover {
+  background-color: var(--greyishWhite);
+}
+
+.post-card > div > article:nth-of-type(4) > aside {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  box-shadow: 1px 1px 3px black;
+  /* padding: 10px 0; */
+}
+
+.post-card > div > article:nth-of-type(4) > aside > span {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  cursor: pointer;
+  line-height: 25px;
+  padding: 0 6px;
+}
+
+.post-card > div > article:nth-of-type(4) > aside > span:hover {
   background-color: var(--greyishWhite);
 }
 
@@ -344,5 +390,9 @@
   .comments-tab.open {
     height: 100vh;
     right: 0;
+  }
+  .post-card > div > article > span > span {
+    display: inline;
+    margin-left: 3px;
   }
 }

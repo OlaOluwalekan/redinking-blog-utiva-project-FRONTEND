@@ -1,9 +1,45 @@
-import { FaBookmark, FaComment, FaThumbsUp } from 'react-icons/fa'
+import {
+  FaBookmark,
+  FaComment,
+  FaEye,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaShare,
+  FaShareAlt,
+  FaThumbsUp,
+  FaTwitter,
+} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   toggleCommentTab,
   toggleTab,
 } from '../../features/single-post/singlePostSlice'
+import { useState } from 'react'
+import ShareTo from './ShareTo'
+
+const shareToData = [
+  {
+    id: 1,
+    icon: <FaFacebook />,
+    text: 'Facebook',
+  },
+  {
+    id: 2,
+    icon: <FaTwitter />,
+    text: 'Twitter',
+  },
+  {
+    id: 3,
+    icon: <FaInstagram />,
+    text: 'Instagram',
+  },
+  {
+    id: 4,
+    icon: <FaLinkedin />,
+    text: 'LinkedIn',
+  },
+]
 
 const PostActions = ({
   likes,
@@ -15,6 +51,8 @@ const PostActions = ({
 }) => {
   const dispatch = useDispatch()
   const { post } = useSelector((store) => store.singlePost)
+  const [shareIsOpen, setShareIsOpen] = useState(false)
+  console.log(post)
 
   return (
     <div>
@@ -35,7 +73,7 @@ const PostActions = ({
             dispatch(toggleTab('like'))
           }}
         >
-          {likes.length} Likes
+          {likes.length} <span> likes</span>
         </span>
       </article>
       <article
@@ -47,7 +85,9 @@ const PostActions = ({
         <span>
           <FaComment />
         </span>
-        <span>{commentsIsLoading ? 0 : comments.length} Comments</span>
+        <span>
+          {commentsIsLoading ? 0 : comments.length} <span>Comments</span>
+        </span>
       </article>
       <article
         onClick={handleBookmarkPost}
@@ -58,6 +98,18 @@ const PostActions = ({
         }}
       >
         <FaBookmark />
+      </article>
+      <article>
+        <span onClick={() => setShareIsOpen(!shareIsOpen)}>
+          <FaShareAlt />
+        </span>
+        {shareIsOpen && (
+          <aside>
+            {shareToData.map((share) => {
+              return <ShareTo key={share.id} {...share} post={post} />
+            })}
+          </aside>
+        )}
       </article>
     </div>
   )

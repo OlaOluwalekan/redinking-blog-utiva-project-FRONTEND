@@ -209,6 +209,7 @@
 
 .popular > div > section::-webkit-scrollbar {
   width: 0;
+  height: 3px;
 }
 
 .popular-brief {

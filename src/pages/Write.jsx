@@ -30,7 +30,7 @@ const Write = () => {
       [{ script: 'sub' }, { script: 'super' }],
       [{ size: ['small', false, 'large', 'huge'] }],
       ['blockquote', 'code-block'],
-      ['image'],
+      ['image', 'link'],
     ],
   }
 

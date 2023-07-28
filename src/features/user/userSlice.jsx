@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import customFetch from '../../utils/axios'
 import {
   checkUsernameThunk,
   confirmCodeThunk,
@@ -103,7 +102,6 @@ const userSlice = createSlice({
       removeUserFromLocalStorage()
     },
     setCurrentStep: (state, { payload }) => {
-      console.log(payload)
       state.currentStep = payload
     },
   },

@@ -22,6 +22,7 @@ const PostCard = ({
   content,
   likes,
   slug,
+  views,
 }) => {
   const [creator, setCreator] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -85,6 +86,7 @@ const PostCard = ({
         user={user}
         commentsIsLoading={commentsIsLoading}
         comments={comments}
+        views={views}
         handleBookmarkPost={() =>
           handleBookmarkPost(
             user,
