@@ -7,6 +7,7 @@ import {
   updateUserThunk,
   loginUserThunk,
   bookmarkPostThunk,
+  getUserPostThunk,
 } from './userThunk'
 import {
   addUserToLocalStorage,
@@ -22,6 +23,7 @@ const initialState = {
   isLoading: false,
   userMenuIsOpen: false,
   currentStep: 1,
+  posts: [],
 }
 
 export const registerUser = createAsyncThunk(
@@ -60,6 +62,13 @@ export const sendVerificationEmail = createAsyncThunk(
       payload,
       thunkAPI
     )
+  }
+)
+
+export const getUserPosts = createAsyncThunk(
+  'user/getUserPosts',
+  async (_, thunkAPI) => {
+    return getUserPostThunk('/post/dashboard', thunkAPI)
   }
 )
 
@@ -193,6 +202,17 @@ const userSlice = createSlice({
       .addCase(bookmarkPost.rejected, (state, { payload }) => {
         state.isLoading = false
         toast.error(payload)
+      })
+      .addCase(getUserPosts.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getUserPosts.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts
+        state.isLoading = false
+      })
+      .addCase(getUserPosts.rejected, (state, { payload }) => {
+        state.isLoading = false
+        console.error(payload)
       })
   },
 })

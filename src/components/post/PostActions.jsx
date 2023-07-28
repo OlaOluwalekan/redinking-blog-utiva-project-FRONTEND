@@ -52,7 +52,6 @@ const PostActions = ({
   const dispatch = useDispatch()
   const { post } = useSelector((store) => store.singlePost)
   const [shareIsOpen, setShareIsOpen] = useState(false)
-  console.log(post)
 
   return (
     <div>

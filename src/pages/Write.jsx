@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
 import styles from '../css/write.module.css'
 import { FaUpload } from 'react-icons/fa'
@@ -6,17 +6,46 @@ import { convertToBase64 } from '../utils/actions'
 import TagsSelect from '../components/write/TagsSelect'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { createPost } from '../features/single-post/singlePostSlice'
+import {
+  createPost,
+  getPostBySlug,
+  resetPost,
+  setEditId,
+  updatePost,
+} from '../features/single-post/singlePostSlice'
 import ReactLoading from 'react-loading'
 
 const Write = () => {
+  const { editId, post, isLoading, inEditMode } = useSelector(
+    (store) => store.singlePost
+  )
+
+  // SETTING WRITE FIELD VALUES BASE ON IS EDITING
   const [title, setTitle] = useState('')
   const [subTitle, setSubTitle] = useState('')
   const [content, setContent] = useState('')
   const [postImage, setPostImage] = useState('')
   const [tags, setTags] = useState([])
+
   const { darkMode, commentIsLoading } = useSelector((store) => store.user)
   const dispatch = useDispatch()
+  // console.log(post)
+
+  useEffect(() => {
+    if (isLoading) {
+      setTitle('')
+      setSubTitle('')
+      setContent(''), setPostImage(''), setTags([])
+    } else {
+      if (editId) {
+        setTitle(post?.title)
+        setSubTitle(post?.subTitle)
+        setContent(post?.content)
+        setPostImage(post?.image)
+        setTags(post?.tags)
+      }
+    }
+  }, [isLoading])
 
   const titleModule = {
     toolbar: ['bold', 'italic', 'underline', 'strike'],
@@ -33,6 +62,21 @@ const Write = () => {
       ['image', 'link'],
     ],
   }
+
+  const resetEditId = () => {
+    dispatch(setEditId(''))
+    dispatch(resetPost())
+  }
+
+  useEffect(() => {
+    if (editId) {
+      dispatch(getPostBySlug(editId))
+    }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('popstate', resetEditId)
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -53,7 +97,12 @@ const Write = () => {
       toast.error(`Your post needs some content`)
       return
     }
-    dispatch(createPost(value))
+    if (inEditMode) {
+      dispatch(updatePost({ id: post?._id, value }))
+      resetEditId()
+    } else {
+      dispatch(createPost(value))
+    }
     setTitle('')
     setSubTitle('')
     setContent('')
@@ -72,7 +121,7 @@ const Write = () => {
       className={darkMode ? `${styles.main} ${styles.dark}` : `${styles.main}`}
     >
       <div>
-        <h2>Create Your Post</h2>
+        <h2>{inEditMode ? 'Update' : 'Create'} Your Post</h2>
         <form onSubmit={handleSubmit}>
           {/* TITLE */}
           <article>
@@ -87,7 +136,7 @@ const Write = () => {
             />
           </article>
 
-          {/* TITLE */}
+          {/* SUB TITLE */}
           <article>
             <label htmlFor='subtitle'>Post Subtitle</label>
             <ReactQuill
@@ -141,13 +190,15 @@ const Write = () => {
           </article>
           <section>
             <button type='submit' disabled={commentIsLoading}>
-              {commentIsLoading ? (
+              {isLoading ? (
                 <ReactLoading
                   type='spin'
                   height={25}
                   width={25}
                   className='loading'
                 />
+              ) : inEditMode ? (
+                'Update Post'
               ) : (
                 'Create Post'
               )}

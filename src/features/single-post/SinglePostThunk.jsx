@@ -65,3 +65,31 @@ export const createPostThunk = async (url, value, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data.message)
   }
 }
+
+export const updatePostThunk = async (url, value, thunkAPI) => {
+  try {
+    const { data } = await customFetch.put(url, value, {
+      headers: {
+        authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+      },
+    })
+    console.log(data)
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message)
+  }
+}
+
+export const deletePostThunk = async (url, thunkAPI) => {
+  try {
+    const { data } = await customFetch.delete(url, {
+      headers: {
+        authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+      },
+    })
+    console.log(data)
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message)
+  }
+}

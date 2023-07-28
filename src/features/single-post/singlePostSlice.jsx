@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   createCommentThunk,
   createPostThunk,
+  deletePostThunk,
   getPostBySlugThunk,
   getPostCommentsThunk,
   likeCommentThunk,
   likePostThunk,
+  updatePostThunk,
 } from './SinglePostThunk'
 import { toast } from 'react-toastify'
 
@@ -16,7 +18,8 @@ const initialState = {
   tab: 'comment',
   comments: [],
   commentsIsLoading: false,
-  renderValue: false,
+  inEditMode: false,
+  editId: '',
 }
 
 export const getPostBySlug = createAsyncThunk(
@@ -73,6 +76,20 @@ export const createPost = createAsyncThunk(
   }
 )
 
+export const updatePost = createAsyncThunk(
+  'singlePost/updatePost',
+  async (payload, thunkAPI) => {
+    return updatePostThunk(`post/posts/${payload.id}`, payload.value, thunkAPI)
+  }
+)
+
+export const deletePost = createAsyncThunk(
+  'singlePost/deletePost',
+  async (payload, thunkAPI) => {
+    return deletePostThunk(`post/posts/${payload}`, thunkAPI)
+  }
+)
+
 const singlePostSlice = createSlice({
   name: 'singlePost',
   initialState,
@@ -82,6 +99,15 @@ const singlePostSlice = createSlice({
     },
     toggleTab: (state, { payload }) => {
       state.tab = payload
+    },
+    setEditId: (state, { payload }) => {
+      state.editId = payload
+    },
+    resetPost: (state, { payload }) => {
+      state.post = null
+    },
+    toggleEditMode: (state, { payload }) => {
+      state.inEditMode = payload
     },
   },
   extraReducers: (builder) => {
@@ -133,19 +159,47 @@ const singlePostSlice = createSlice({
         console.log(payload)
       })
       .addCase(createPost.pending, (state) => {
-        state.commentsIsLoading = true
+        state.isLoading = true
       })
       .addCase(createPost.fulfilled, (state) => {
-        state.commentsIsLoading = false
+        state.isLoading = false
         toast.success('Post created successfully')
       })
       .addCase(createPost.rejected, (state, { payload }) => {
-        state.commentsIsLoading = false
+        state.isLoading = false
+        toast.error(payload)
+      })
+      .addCase(updatePost.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updatePost.fulfilled, (state) => {
+        state.isLoading = false
+        toast.success('Post updated successfully')
+      })
+      .addCase(updatePost.rejected, (state, { payload }) => {
+        state.isLoading = false
+        toast.error(payload)
+      })
+      .addCase(deletePost.pending, (state) => {
+        // state.isLoading = true
+      })
+      .addCase(deletePost.fulfilled, (state) => {
+        state.isLoading = false
+        toast.success('Post deleted successfully')
+      })
+      .addCase(deletePost.rejected, (state, { payload }) => {
+        state.isLoading = false
         toast.error(payload)
       })
   },
 })
 
-export const { toggleCommentTab, toggleTab } = singlePostSlice.actions
+export const {
+  toggleCommentTab,
+  toggleTab,
+  setEditId,
+  resetPost,
+  toggleEditMode,
+} = singlePostSlice.actions
 
 export default singlePostSlice.reducer

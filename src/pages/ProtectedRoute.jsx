@@ -1,17 +1,22 @@
 import { useSelector } from 'react-redux'
-import { Navigate, useParams } from 'react-router-dom'
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom'
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useSelector((store) => store.user)
   const { dashboard } = useParams()
-
-  console.log(dashboard)
+  const location = useLocation()
 
   if (!user) {
     return <Navigate to='/auth/login' />
   }
 
-  if (user?.user.username !== dashboard) {
+  if (location.pathname !== '/write' && user?.user.username !== dashboard) {
     return <Navigate to={`/view/${dashboard}`} />
   }
 

@@ -1,0 +1,78 @@
+.main {
+  width: 100%;
+}
+
+.main > div {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.main > div > section {
+  position: relative;
+}
+
+.main > div > section > article {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--greyishWhite);
+  padding: 5px 15px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px 0 0 0;
+}
+
+.main > div > section:hover > article {
+  display: flex;
+}
+
+.main > div > section > article > a {
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.main > div > section > article > span {
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.main > div > section > article > a {
+  color: var(--purpleBlue);
+}
+.main > div > section > article > span {
+  color: var(--dullRed);
+}
+
+.main > div > section > article > a:hover {
+  background-color: var(--purpleBlue);
+  color: var(--mainWhite);
+}
+
+.main > div > section > article > span:hover {
+  background-color: var(--dullRed);
+  color: var(--mainWhite);
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+  }
+}

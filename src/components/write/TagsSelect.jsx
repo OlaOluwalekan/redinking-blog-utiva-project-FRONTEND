@@ -27,7 +27,7 @@ const TagsSelect = ({ selectedTag, setSelectedTag }) => {
 
   useEffect(() => {
     const newTagList = tagList.filter((tag) => {
-      return !selectedTag.includes(tag)
+      return !selectedTag?.includes(tag)
     })
     setTagList(newTagList)
   }, [selectedTag])
@@ -46,10 +46,10 @@ const TagsSelect = ({ selectedTag, setSelectedTag }) => {
         handleChange={handleChange}
       />
       <div>
-        {selectedTag.length === 0 ? (
+        {selectedTag?.length === 0 ? (
           <p>No tag selected. Select between 2 to 5 tags</p>
         ) : (
-          selectedTag.map((int, i) => {
+          selectedTag?.map((int, i) => {
             return (
               <article key={i}>
                 <span onClick={() => removeTag(int)}>
