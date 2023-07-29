@@ -1,0 +1,30 @@
+.main {
+  margin-top: 30px;
+}
+
+.main > div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main > div > h2 {
+  color: var(--purpleBlue);
+  margin-bottom: 20px;
+}
+
+.main > div > section {
+  display: flex;
+  column-gap: 20px;
+  overflow-x: scroll;
+}
+
+.main > div > section::-webkit-scrollbar {
+  height: 3px;
+}
+
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+  }
+}

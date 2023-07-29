@@ -1,15 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getPostThunk } from './postThunk'
+import {
+  getNewestPostThunk,
+  getPostThunk,
+  getUserInterestPostThunk,
+} from './postThunk'
 
 const initialState = {
   isLoading: false,
   posts: [],
+  newestPosts: [],
+  userInterestsPosts: [],
+  trendingPosts: [],
 }
 
 export const getPosts = createAsyncThunk(
   'post/getPosts',
   async (_, thunkAPI) => {
     return getPostThunk('/post', thunkAPI)
+  }
+)
+
+export const getNewestPosts = createAsyncThunk(
+  'post/getNewestPosts',
+  async (_, thunkAPI) => {
+    return getNewestPostThunk('/post/latest', thunkAPI)
+  }
+)
+
+export const getUserInterestPosts = createAsyncThunk(
+  'post/getUserInterestPosts',
+  async (_, thunkAPI) => {
+    return getUserInterestPostThunk('/post/interests', thunkAPI)
   }
 )
 
@@ -26,6 +47,28 @@ const postSlice = createSlice({
         state.posts = payload.posts
       })
       .addCase(getPosts.rejected, (state, { payload }) => {
+        state.isLoading = false
+        console.log(payload)
+      })
+      .addCase(getNewestPosts.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getNewestPosts.fulfilled, (state, { payload }) => {
+        state.isLoading = false
+        state.newestPosts = payload.post
+      })
+      .addCase(getNewestPosts.rejected, (state, { payload }) => {
+        state.isLoading = false
+        console.log(payload)
+      })
+      .addCase(getUserInterestPosts.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getUserInterestPosts.fulfilled, (state, { payload }) => {
+        state.isLoading = false
+        state.userInterestsPosts = payload.posts
+      })
+      .addCase(getUserInterestPosts.rejected, (state, { payload }) => {
         state.isLoading = false
         console.log(payload)
       })

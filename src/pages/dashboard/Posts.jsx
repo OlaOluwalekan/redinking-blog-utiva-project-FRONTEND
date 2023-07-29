@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserPosts } from '../../features/user/userSlice'
-import PopularPostBrief from '../../components/home/PopularPostBrief'
+import PopularPostBrief from '../../components/home/PostBrief'
 import styles from '../../css/user-post.module.css'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'

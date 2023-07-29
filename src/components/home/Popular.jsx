@@ -3,7 +3,7 @@ import styles from '../../css/home.module.css'
 import { useEffect } from 'react'
 import { getPosts } from '../../features/post/postSlice'
 import Loading from '../Loading'
-import PopularPostBrief from './PopularPostBrief'
+import PopularPostBrief from './PostBrief'
 
 const Popular = () => {
   const dispatch = useDispatch()

@@ -3,7 +3,7 @@ import styles from '../../css/home.module.css'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
-  const { darkMode } = useSelector((store) => store.user)
+  const { darkMode, user } = useSelector((store) => store.user)
 
   return (
     <div className={darkMode ? `${styles.hero} ${styles.dark}` : styles.hero}>
@@ -25,10 +25,12 @@ const Hero = () => {
           you will ever needed
         </h3>
 
-        <article>
-          <Link to='/auth/login'>Login</Link>
-          <Link to='/auth/register'>Get Started</Link>
-        </article>
+        {!user && (
+          <article>
+            <Link to='/auth/login'>Login</Link>
+            <Link to='/auth/register'>Get Started</Link>
+          </article>
+        )}
       </section>
     </div>
   )

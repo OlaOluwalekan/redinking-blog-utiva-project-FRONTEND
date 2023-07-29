@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import HTMLReactParser from 'html-react-parser'
 import styles from '../../css/home.module.css'
 
-const PopularPostBrief = ({ _id, title, createdBy, image, tags, slug }) => {
+const PostBrief = ({ _id, title, createdBy, image, tags, slug }) => {
   const [creator, setCreator] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -44,4 +44,4 @@ const PopularPostBrief = ({ _id, title, createdBy, image, tags, slug }) => {
     </div>
   )
 }
-export default PopularPostBrief
+export default PostBrief

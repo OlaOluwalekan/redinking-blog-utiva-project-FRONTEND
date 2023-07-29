@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import PopularPostBrief from '../home/PopularPostBrief'
+import PopularPostBrief from '../home/PostBrief'
 import customFetch from '../../utils/axios'
 import { useState } from 'react'
 import Loading from 'react-loading'
