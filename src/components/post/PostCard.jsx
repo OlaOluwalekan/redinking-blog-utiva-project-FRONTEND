@@ -62,7 +62,13 @@ const PostCard = ({
       <section>
         <img src={loading ? '' : creator?.profileImage} alt='photo' />
         <article>
-          <Link to={`/view/${creator?.username}`}>
+          <Link
+            to={
+              user?.user.username === creator?.username
+                ? `/${user?.user.username}`
+                : `/view/${creator?.username}`
+            }
+          >
             {loading ? '' : creator?.username}
           </Link>
           <p>

@@ -92,3 +92,25 @@ export const getUserPostThunk = async (url, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data.message)
   }
 }
+
+export const followCreatorThunk = async (url, payload, thunkAPI) => {
+  try {
+    const { data } = await customFetch.put(url, payload, {
+      headers: {
+        authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+      },
+    })
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message)
+  }
+}
+
+export const viewUserThunk = async (url, thunkAPI) => {
+  try {
+    const { data } = await customFetch(url)
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message)
+  }
+}

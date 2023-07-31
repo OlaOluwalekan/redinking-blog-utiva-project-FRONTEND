@@ -8,6 +8,8 @@ import {
   loginUserThunk,
   bookmarkPostThunk,
   getUserPostThunk,
+  followCreatorThunk,
+  viewUserThunk,
 } from './userThunk'
 import {
   addUserToLocalStorage,
@@ -24,6 +26,7 @@ const initialState = {
   userMenuIsOpen: false,
   currentStep: 1,
   posts: [],
+  creator: null,
 }
 
 export const registerUser = createAsyncThunk(
@@ -87,6 +90,20 @@ export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (payload, thunkAPI) => {
     return loginUserThunk('/auth/login', payload, thunkAPI)
+  }
+)
+
+export const followCreator = createAsyncThunk(
+  'user/followCreator',
+  async (payload, thunkAPI) => {
+    return followCreatorThunk(`/user/follow`, payload, thunkAPI)
+  }
+)
+
+export const viewUser = createAsyncThunk(
+  'user/viewUser',
+  async (payload, thunkAPI) => {
+    return viewUserThunk(`/user/view/${payload}`, thunkAPI)
   }
 )
 
@@ -213,6 +230,30 @@ const userSlice = createSlice({
       .addCase(getUserPosts.rejected, (state, { payload }) => {
         state.isLoading = false
         console.error(payload)
+      })
+      .addCase(followCreator.pending, (state) => {
+        // state.isLoading = true
+      })
+      .addCase(followCreator.fulfilled, (state, { payload }) => {
+        state.user = payload
+        state.isLoading = false
+        addUserToLocalStorage(payload)
+        // toast.success('Updated successfully')
+      })
+      .addCase(followCreator.rejected, (state, { payload }) => {
+        state.isLoading = false
+        toast.error(payload)
+      })
+      .addCase(viewUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(viewUser.fulfilled, (state, { payload }) => {
+        state.creator = payload.user
+        state.isLoading = false
+      })
+      .addCase(viewUser.rejected, (state, { payload }) => {
+        state.isLoading = false
+        toast.error(payload)
       })
   },
 })

@@ -29,15 +29,6 @@ const Input = ({
               : '#ff000081',
         }}
       >
-        {/* {message && message.includes('available') ? (
-          <span>
-            {message} <FaCheck />
-          </span>
-        ) : (
-          <span>
-            {message} <FaTimes />
-          </span>
-        )} */}
         {message}
       </p>
     </div>

@@ -6,12 +6,27 @@ import Input from '../register-login/Input'
 import { toast } from 'react-toastify'
 
 const TagsSelect = ({ selectedTag, setSelectedTag }) => {
-  const [tagList, setTagList] = useState(interests)
+  const interestSet = new Set(interests)
+  const uniqueInterests = [...interestSet]
+  const [tagList, setTagList] = useState(uniqueInterests.slice(0, 15))
   const [tagSearch, setTagSearch] = useState('')
 
   const handleChange = (e) => {
     setTagSearch(e.target.value)
   }
+
+  useEffect(() => {
+    if (tagSearch === '') {
+      setTagList(uniqueInterests.slice(0, 15))
+      return
+    }
+    const newTags = uniqueInterests.filter((interest) => {
+      return interest
+        .toLocaleLowerCase()
+        .includes(tagSearch.toLocaleLowerCase())
+    })
+    setTagList(newTags)
+  }, [tagSearch])
 
   const handleCheck = (li) => {
     setSelectedTag([...selectedTag, li])

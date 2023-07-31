@@ -98,12 +98,20 @@
   text-underline-offset: 5px;
 }
 
+.main.dark .post-content {
+  color: var(--mainWhite);
+}
+
 .post-card > .post-content img {
   width: 80%;
   display: block;
   margin: 0 auto;
   text-align: justify;
 }
+
+/* .main.dark .post-card > .post-content li span {
+  color: red;
+} */
 
 .main
   > div

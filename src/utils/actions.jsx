@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify'
 import { likeComment, likePost } from '../features/single-post/singlePostSlice'
-import { bookmarkPost } from '../features/user/userSlice'
+import { bookmarkPost, followCreator } from '../features/user/userSlice'
+import customFetch from './axios'
 
 export const handleLike = (user, likes, _id, dispatch, navigate) => {
   if (!user) {
@@ -75,5 +76,34 @@ export const convertToBase64 = (file) => {
     fileReader.onerror = (error) => {
       reject(error)
     }
+  })
+}
+
+export const handleFollowCreator = async (
+  userFollowing,
+  creatorFollowers,
+  userId,
+  creatorId,
+  dispatch
+) => {
+  let newUserFollowing
+  let newCreatorFollowers
+  if (userFollowing.includes(creatorId)) {
+    newUserFollowing = userFollowing.filter((following) => {
+      return following !== creatorId
+    })
+  } else {
+    newUserFollowing = [...userFollowing, creatorId]
+  }
+  if (creatorFollowers.includes(userId)) {
+    newCreatorFollowers = creatorFollowers.filter((follower) => {
+      return follower !== userId
+    })
+  } else {
+    newCreatorFollowers = [...creatorFollowers, userId]
+  }
+  dispatch(followCreator({ following: newUserFollowing }))
+  const { data } = await customFetch.put(`/user/follow/${creatorId}`, {
+    followers: newCreatorFollowers,
   })
 }
