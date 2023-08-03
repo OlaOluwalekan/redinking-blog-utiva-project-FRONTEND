@@ -18,9 +18,13 @@ import Following from './pages/dashboard/Following'
 import ProtectedRoute from './pages/ProtectedRoute'
 import PostDetails from './pages/PostDetails'
 import View from './pages/View'
+import { interests } from './interests-data'
 
 const App = () => {
   const { darkMode } = useSelector((store) => store.user)
+  // const newInterest = [...new Set(interests)]
+  // console.log('new: ' + newInterest.length)
+  // console.log('original: ' + interests.length)
 
   return (
     <main className={darkMode ? 'main dark' : 'main light'}>

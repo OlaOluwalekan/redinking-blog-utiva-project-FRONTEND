@@ -227,7 +227,7 @@
 
 .popular-brief > section {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 10px;
   color: var(--mainWhite);
 }
@@ -272,11 +272,15 @@
 
 .popular-brief > section > article > article > p:nth-of-type(2) {
   font-size: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
 }
 .popular-brief > section > article > article > p:nth-of-type(2) > span {
-  padding: 1px;
+  padding: 2px;
   background-color: var(--ashBlack);
-  margin: 0 1px;
+  border-radius: 2px;
+  /* margin: 0 1px; */
 }
 
 /* DESKTOP SCREEN */

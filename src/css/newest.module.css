@@ -16,6 +16,7 @@
   display: flex;
   column-gap: 20px;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .main > div > section::-webkit-scrollbar {
