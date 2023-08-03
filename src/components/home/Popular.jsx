@@ -18,7 +18,7 @@ const Popular = () => {
   return (
     <div className={styles.popular}>
       <div>
-        <h2>Popular</h2>
+        <h2>Trending</h2>
         <section>
           {isLoading ? (
             <Loading />

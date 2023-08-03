@@ -186,11 +186,11 @@
 /* POPULAR POSTS STYLES */
 
 .popular {
-  margin-top: 220px;
+  margin-top: 50px;
 }
 
 .popular > div {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
 }
 

@@ -50,6 +50,8 @@ const PostCard = ({
     viewUser()
   }, [])
 
+  // console.log(content)
+
   return (
     <section className={styles['post-card']}>
       <h2>{htmlParser(title)}</h2>

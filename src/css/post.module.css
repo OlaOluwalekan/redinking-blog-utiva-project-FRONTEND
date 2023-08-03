@@ -109,6 +109,39 @@
   text-align: justify;
 }
 
+.post-content pre {
+  background-color: var(--mainBlack);
+  color: var(--mainWhite);
+  font-size: 12px;
+  padding: 10px;
+  overflow-x: scroll;
+  font-family: monospace;
+  position: relative;
+}
+
+/* .post-content pre */
+
+.post-content pre::after {
+  content: '';
+  width: 15px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  background-color: green;
+  border-radius: 3px;
+  display: none;
+}
+
+.post-content pre::-webkit-scrollbar {
+  height: 3px;
+}
+
+.main.dark .post-content pre {
+  background-color: var(--darkPurpleBlue);
+}
+
 /* .main.dark .post-card > .post-content li span {
   color: red;
 } */
