@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, NavLink, Outlet, useNavigate, useParams } from 'react-router-dom'
 import customFetch from '../utils/axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -49,6 +49,7 @@ const View = () => {
   // }
 
   useEffect(() => {
+    console.log(id)
     dispatch(viewUser(id))
   }, [])
 
@@ -59,7 +60,11 @@ const View = () => {
       <div>
         <section>
           <article>
-            <img src={creator?.profileImage} alt='photo' />
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <img src={creator?.profileImage} alt='photo' />
+            )}
           </article>
           <div>
             <h2>{`${creator?.firstName} ${creator?.lastName}`}</h2>
@@ -82,7 +87,26 @@ const View = () => {
               </Link>
             </article>
           </div>
+          <aside>
+            <NavLink
+              to={`/view/${creator?.username}/`}
+              className={({ isActive }) => {
+                return isActive ? `${styles.active}` : `${styles['not-active']}`
+              }}
+            >
+              Profile
+            </NavLink>
+            <NavLink
+              to={`/view/${creator?.username}/posts`}
+              className={({ isActive }) => {
+                return isActive ? `${styles.active}` : `${styles['not-active']}`
+              }}
+            >
+              Posts
+            </NavLink>
+          </aside>
         </section>
+        <Outlet />
       </div>
     </div>
   )

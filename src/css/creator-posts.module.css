@@ -1,0 +1,8 @@
+.main > h3 {
+  color: var(--purpleBlue);
+  margin-bottom: 20px;
+}
+
+.main > h3 > span {
+  color: var(--dullRed);
+}

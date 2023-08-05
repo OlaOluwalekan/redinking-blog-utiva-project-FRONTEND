@@ -1,0 +1,13 @@
+.main > article {
+  margin: 10px 0;
+  border-bottom: 1px solid var(--purpleBlue);
+}
+
+.main > article > h5 {
+  color: var(--purpleBlue);
+}
+
+.main > article > p {
+  background-color: var(--greyishWhite);
+  padding: 10px;
+}

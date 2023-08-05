@@ -67,8 +67,8 @@ const PostCard = ({
           <Link
             to={
               user?.user.username === creator?.username
-                ? `/${user?.user.username}`
-                : `/view/${creator?.username}`
+                ? `/${user?.user.username}/`
+                : `/view/${creator?.username}/`
             }
           >
             {loading ? '' : creator?.username}

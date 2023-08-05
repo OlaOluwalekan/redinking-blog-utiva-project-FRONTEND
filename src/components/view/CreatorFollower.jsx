@@ -4,9 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleFollowCreator } from '../../utils/actions'
 
-const Follower = ({ id, userId }) => {
+const CreatorFollower = ({ userId, creatorId }) => {
   const [follower, setFollower] = useState(null)
-  const [loading, setLoading] = useState(false)
   const { user } = useSelector((store) => store.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -26,15 +25,12 @@ const Follower = ({ id, userId }) => {
     viewUser()
   }
 
-  // console.log(id, userId)
-
   const viewUser = async () => {
     try {
-      setLoading(true)
-      const { data } = await customFetch(`user/view/${id}`)
+      // setLoading(true)
+      const { data } = await customFetch(`user/view/${userId}`)
       setFollower(data.user)
-      // console.log(data.user)
-      setLoading(false)
+      // setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -44,6 +40,12 @@ const Follower = ({ id, userId }) => {
     viewUser()
   }, [])
 
+  // console.log(`${follower?.username}: ${follower?._id} ${userId}`)
+  // if (follower) {
+  //   console.log(`${follower?.username}: ${follower?._id}`)
+  //   console.log(user.user.following)
+  // }
+
   return (
     <section>
       <img src={follower?.profileImage} alt={follower?.username} />
@@ -52,11 +54,19 @@ const Follower = ({ id, userId }) => {
           {`${follower?.firstName} ${follower?.lastName}`}{' '}
           <span>{follower?.username}</span>
         </Link>
-        <button onClick={handleClick}>
-          {follower?.followers.includes(userId) ? 'Unfollow' : 'Follow'}
-        </button>
+        {!user ? (
+          <button>Follow</button>
+        ) : (
+          user?.user._id !== follower?._id && (
+            <button onClick={handleClick}>
+              {user?.user.following.includes(follower?._id)
+                ? 'Unfollow'
+                : 'Follow'}
+            </button>
+          )
+        )}
       </article>
     </section>
   )
 }
-export default Follower
+export default CreatorFollower

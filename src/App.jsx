@@ -20,6 +20,10 @@ import PostDetails from './pages/PostDetails'
 import View from './pages/View'
 import { interests } from './interests-data'
 import Privacy from './pages/Privacy'
+import CreatorProfile from './pages/view/CreatorProfile'
+import CreatorPosts from './pages/view/CreatorPosts'
+import CreatorFollowers from './pages/view/CreatorFollowers'
+import CreatorFollowing from './pages/view/CreatorFollowing'
 
 const App = () => {
   const { darkMode } = useSelector((store) => store.user)
@@ -59,7 +63,12 @@ const App = () => {
               }
             />
             <Route path='posts/:postSlug' element={<PostDetails />} />
-            <Route path='view/:creator' element={<View />} />
+            <Route path='view/:creator' element={<View />}>
+              <Route index element={<CreatorProfile />} />
+              <Route path='posts' element={<CreatorPosts />} />
+              <Route path='followers' element={<CreatorFollowers />} />
+              <Route path='following' element={<CreatorFollowing />} />
+            </Route>
             <Route path='privacy' element={<Privacy />} />
             <Route path='*' element={<Error />} />
           </Route>
