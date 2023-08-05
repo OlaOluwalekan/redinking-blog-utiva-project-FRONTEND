@@ -7,7 +7,7 @@
 .main > h2 {
   color: var(--purpleBlue);
   width: fit-content;
-  margin: 10px auto;
+  margin: 40px auto 10px auto;
 }
 
 .main > form {

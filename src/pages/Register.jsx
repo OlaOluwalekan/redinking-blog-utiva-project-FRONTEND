@@ -119,7 +119,7 @@ const Register = () => {
       <form onSubmit={handleSubmit} className={darkMode ? styles.dark : ''}>
         <h5>
           {currentStep === 1
-            ? 'Login Details'
+            ? 'Account Details'
             : currentStep === 2
             ? 'Verify Your Email'
             : 'Select Topics of Interest'}
