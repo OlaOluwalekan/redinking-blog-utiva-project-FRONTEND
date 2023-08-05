@@ -110,7 +110,7 @@ const Navbar = () => {
               <UserMenuItems path='/' text='Settings' icon={<TfiSettings />} />
               <UserMenuItems path='/' text='Help' icon={<TfiHelpAlt />} />
               <UserMenuItems
-                path='/'
+                path='/privacy'
                 text='Terms & Policy'
                 icon={<MdPolicy />}
               />

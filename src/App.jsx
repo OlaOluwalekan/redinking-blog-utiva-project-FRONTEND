@@ -19,6 +19,7 @@ import ProtectedRoute from './pages/ProtectedRoute'
 import PostDetails from './pages/PostDetails'
 import View from './pages/View'
 import { interests } from './interests-data'
+import Privacy from './pages/Privacy'
 
 const App = () => {
   const { darkMode } = useSelector((store) => store.user)
@@ -59,6 +60,7 @@ const App = () => {
             />
             <Route path='posts/:postSlug' element={<PostDetails />} />
             <Route path='view/:creator' element={<View />} />
+            <Route path='privacy' element={<Privacy />} />
             <Route path='*' element={<Error />} />
           </Route>
         </Routes>

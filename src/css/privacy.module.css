@@ -1,0 +1,72 @@
+.main {
+  margin-top: 50px;
+}
+
+.main.dark {
+  color: var(--mainWhite);
+}
+
+.main > div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main > div > h2 {
+  text-align: center;
+}
+
+.main > div > h2 > a {
+  text-decoration: none;
+  color: var(--dullRed);
+}
+
+.main > div > h2 > a > span {
+  color: var(--purpleBlue);
+}
+
+.main > div > section > p {
+  text-align: justify;
+  margin: 20px 0;
+}
+
+.main > div > section > p > a {
+  text-decoration: none;
+  color: var(--dullRed);
+}
+
+.main > div > section > p > a > span {
+  color: var(--purpleBlue);
+}
+
+.main > div > section > h3 {
+  margin-top: 10px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.main > div > section > ul {
+  margin-left: 10px;
+  list-style-type: square;
+  text-align: justify;
+}
+
+.main > div > section > ul > li > a {
+  text-decoration: none;
+  color: var(--dullRed);
+}
+
+.main > div > section > ul > li > a > span {
+  color: var(--purpleBlue);
+}
+
+.main > div > section > ul > li > span {
+  color: var(--purpleBlue);
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 700px) {
+  .main > div {
+    width: 80%;
+    max-width: 1100px;
+  }
+}
