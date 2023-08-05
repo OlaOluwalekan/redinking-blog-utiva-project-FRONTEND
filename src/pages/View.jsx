@@ -1,4 +1,11 @@
-import { Link, NavLink, Outlet, useNavigate, useParams } from 'react-router-dom'
+import {
+  Link,
+  NavLink,
+  Navigate,
+  Outlet,
+  useNavigate,
+  useParams,
+} from 'react-router-dom'
 import customFetch from '../utils/axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -19,6 +26,7 @@ const View = () => {
 
   // const [creator, setCreator] = useState(null)
   const [loading, setLoading] = useState(false)
+  // console.log(id, user?.user._id)
 
   const handleFollow = async () => {
     if (!user) {
@@ -49,9 +57,12 @@ const View = () => {
   // }
 
   useEffect(() => {
-    console.log(id)
     dispatch(viewUser(id))
   }, [])
+
+  if (user && id === user?.user.username) {
+    return <Navigate to={`/${id}`} />
+  }
 
   return (
     <div
@@ -67,8 +78,10 @@ const View = () => {
             )}
           </article>
           <div>
-            <h2>{`${creator?.firstName} ${creator?.lastName}`}</h2>
-            <h3>{creator?.username}</h3>
+            <h2>
+              {isLoading ? '' : `${creator?.firstName} ${creator?.lastName}`}
+            </h2>
+            <h3>{isLoading ? '' : creator?.username}</h3>
             <button onClick={handleFollow}>
               {user && user?.user.following.includes(creator?._id)
                 ? 'Unfollow'

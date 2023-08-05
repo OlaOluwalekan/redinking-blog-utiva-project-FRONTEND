@@ -50,7 +50,7 @@ const CreatorFollower = ({ userId, creatorId }) => {
     <section>
       <img src={follower?.profileImage} alt={follower?.username} />
       <article>
-        <Link to={`/view/${follower?.username}/`}>
+        <Link to={`/${follower?.username}`}>
           {`${follower?.firstName} ${follower?.lastName}`}{' '}
           <span>{follower?.username}</span>
         </Link>
