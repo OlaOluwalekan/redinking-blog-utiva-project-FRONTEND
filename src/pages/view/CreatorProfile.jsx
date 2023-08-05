@@ -3,10 +3,12 @@ import ProfileInfo from '../../components/view/ProfileInfo'
 import styles from '../../css/creator-profile.module.css'
 
 const CreatorProfile = () => {
-  const { creator } = useSelector((store) => store.user)
+  const { creator, darkMode } = useSelector((store) => store.user)
 
   return (
-    <div className={styles.main}>
+    <div
+      className={darkMode ? `${styles.main} ${styles.dark}` : `${styles.main}`}
+    >
       <ProfileInfo
         title='Name'
         content={`${creator?.firstName} ${creator?.lastName}`}

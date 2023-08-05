@@ -90,6 +90,10 @@
   opacity: 1;
 }
 
+.main.dark > div > section > aside > a {
+  color: var(--mainWhite);
+}
+
 @media screen and (min-width: 700px) {
   .main > div {
     width: 80%;

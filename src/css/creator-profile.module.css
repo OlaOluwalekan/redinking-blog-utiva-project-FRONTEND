@@ -11,3 +11,7 @@
   background-color: var(--greyishWhite);
   padding: 10px;
 }
+
+.main.dark > article > p {
+  background-color: var(--darkPurpleBlue);
+}
