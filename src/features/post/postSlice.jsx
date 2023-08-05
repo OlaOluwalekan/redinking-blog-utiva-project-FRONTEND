@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   getNewestPostThunk,
   getPostThunk,
+  getTrendingPostsThunk,
   getUserInterestPostThunk,
 } from './postThunk'
 
@@ -31,6 +32,13 @@ export const getUserInterestPosts = createAsyncThunk(
   'post/getUserInterestPosts',
   async (_, thunkAPI) => {
     return getUserInterestPostThunk('/post/interests', thunkAPI)
+  }
+)
+
+export const getTrendingPosts = createAsyncThunk(
+  'post/getTrendingPosts',
+  async (_, thunkAPI) => {
+    return getTrendingPostsThunk('/post/trending', thunkAPI)
   }
 )
 
@@ -69,6 +77,17 @@ const postSlice = createSlice({
         state.userInterestsPosts = payload.posts
       })
       .addCase(getUserInterestPosts.rejected, (state, { payload }) => {
+        state.isLoading = false
+        console.log(payload)
+      })
+      .addCase(getTrendingPosts.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getTrendingPosts.fulfilled, (state, { payload }) => {
+        state.isLoading = false
+        state.trendingPosts = payload.posts
+      })
+      .addCase(getTrendingPosts.rejected, (state, { payload }) => {
         state.isLoading = false
         console.log(payload)
       })

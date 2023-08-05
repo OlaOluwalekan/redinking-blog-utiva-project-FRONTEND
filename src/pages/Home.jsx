@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setEditId } from '../features/single-post/singlePostSlice'
 import NewestPosts from '../components/home/NewestPosts'
 import UserInterestPosts from '../components/home/UserInterestPosts'
+import Trending from '../components/home/Trending'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -20,7 +21,8 @@ const Home = () => {
       <Hero />
       <NewestPosts />
       {user && <UserInterestPosts />}
-      <Popular />
+      {/* <Popular /> */}
+      <Trending />
     </div>
   )
 }
