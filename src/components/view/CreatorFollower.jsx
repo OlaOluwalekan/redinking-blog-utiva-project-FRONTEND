@@ -51,8 +51,14 @@ const CreatorFollower = ({ userId, creatorId }) => {
       <img src={follower?.profileImage} alt={follower?.username} />
       <article>
         <Link to={`/${follower?.username}`}>
-          {`${follower?.firstName} ${follower?.lastName}`}{' '}
-          <span>{follower?.username}</span>
+          {user?.user.username === follower?.username ? (
+            'You'
+          ) : (
+            <>
+              {`${follower?.firstName} ${follower?.lastName}`}{' '}
+              <span>{follower?.username}</span>
+            </>
+          )}
         </Link>
         {!user ? (
           <button>Follow</button>
