@@ -416,4 +416,7 @@ export const interests = [
   'NFT',
   'Web3',
   'War',
+  'Marriage',
+  'Relationship',
+  'Love',
 ]
