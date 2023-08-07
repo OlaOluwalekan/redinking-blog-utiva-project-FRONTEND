@@ -9,6 +9,7 @@ import Loading from '../components/Loading'
 import PostCard from '../components/post/PostCard'
 import styles from '../css/post.module.css'
 import CommentTab from '../components/post/CommentTab'
+import Error from './Error'
 
 const PostDetails = () => {
   const { postSlug } = useParams()
@@ -19,6 +20,7 @@ const PostDetails = () => {
   useEffect(() => {
     dispatch(getPostBySlug(postSlug))
     dispatch(getPostComments(postSlug))
+    document.title = `RedInking | ${postSlug}`
   }, [])
 
   if (isLoading) {
@@ -37,7 +39,7 @@ const PostDetails = () => {
   }
 
   if (!post) {
-    return <h3>The post you seek may have been removed</h3>
+    return <Error />
   }
 
   return (

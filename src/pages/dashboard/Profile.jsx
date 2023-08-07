@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styles from '../../css/profile.module.css'
 import PersonalInfoInput from '../../components/profile/PersonalInfoInput'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Step3 from '../../components/register-login/Step3'
 import { updateUser } from '../../features/user/userSlice'
 
@@ -22,6 +22,10 @@ const Profile = () => {
     const value = user.user[name]
     setUserUpdate({ ...userUpdate, [name]: value })
   }
+
+  useEffect(() => {
+    document.title = `RedInking | You`
+  }, [])
 
   return (
     <div

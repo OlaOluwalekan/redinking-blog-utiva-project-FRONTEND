@@ -14,6 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(setEditId(''))
+    document.title = `RedInking | Home`
   }, [])
 
   return (

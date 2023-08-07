@@ -101,6 +101,10 @@ const Register = () => {
     }
   }, [user, currentStep])
 
+  useEffect(() => {
+    document.title = `RedInking | Register`
+  }, [])
+
   const handleClick = async () => {
     if (currentStep === 2) {
       await dispatch(

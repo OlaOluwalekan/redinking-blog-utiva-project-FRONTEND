@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import styles from '../../css/bookmarks.module.css'
 import { FaBookmark } from 'react-icons/fa'
 import Bookmark from '../../components/profile/Bookmark'
+import { useEffect } from 'react'
 
 const Bookmarks = () => {
   const {
@@ -11,6 +12,10 @@ const Bookmarks = () => {
     darkMode,
   } = useSelector((store) => store.user)
   // console.log(bookmarks)
+
+  useEffect(() => {
+    document.title = `RedInking | You - Bookmarks`
+  }, [])
 
   return (
     <div

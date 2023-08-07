@@ -13,9 +13,14 @@ const ProtectedRoute = ({ children }) => {
   const location = useLocation()
 
   if (!user) {
-    return <Navigate to='/auth/login' />
+    if (location.pathname === '/write') {
+      return <Navigate to='/auth/login' />
+    } else {
+      return <Navigate to={`/view/${dashboard}`} />
+    }
   }
 
+  // console.log(dashboard, user);
   if (location.pathname !== '/write' && user?.user.username !== dashboard) {
     return <Navigate to={`/view/${dashboard}`} />
   }

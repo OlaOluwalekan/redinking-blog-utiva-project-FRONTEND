@@ -33,6 +33,10 @@ const Login = () => {
   }
 
   useEffect(() => {
+    document.title = `RedInking | Login`
+  }, [])
+
+  useEffect(() => {
     if (user) {
       if (user.user.emailVerified) {
         setTimeout(() => {

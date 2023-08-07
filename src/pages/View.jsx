@@ -15,6 +15,7 @@ import Loading from '../components/Loading'
 import { BsPeopleFill } from 'react-icons/bs'
 import { followCreator, viewUser } from '../features/user/userSlice'
 import { handleFollowCreator } from '../utils/actions'
+import Error from './Error'
 
 const View = () => {
   const { creator: id } = useParams()
@@ -27,6 +28,10 @@ const View = () => {
   // const [creator, setCreator] = useState(null)
   const [loading, setLoading] = useState(false)
   // console.log(id, user?.user._id)
+
+  if (!creator) {
+    return <Error />
+  }
 
   const handleFollow = async () => {
     if (!user) {
@@ -58,6 +63,7 @@ const View = () => {
 
   useEffect(() => {
     dispatch(viewUser(id))
+    document.title = `RedInking | ${id}`
   }, [])
 
   if (user && id === user?.user.username) {

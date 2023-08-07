@@ -61,7 +61,7 @@ const CreatorFollower = ({ userId, creatorId }) => {
           )}
         </Link>
         {!user ? (
-          <button>Follow</button>
+          <button onClick={handleClick}>Follow</button>
         ) : (
           user?.user._id !== follower?._id && (
             <button onClick={handleClick}>

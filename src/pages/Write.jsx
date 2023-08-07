@@ -76,6 +76,9 @@ const Write = () => {
 
   useEffect(() => {
     window.addEventListener('popstate', resetEditId)
+    document.title = inEditMode
+      ? `RedInking | Edit Post`
+      : `RedInking | Write Post`
   }, [])
 
   const handleSubmit = (e) => {

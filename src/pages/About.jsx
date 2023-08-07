@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
 import styles from '../css/privacy.module.css'
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 const About = () => {
   const { darkMode } = useSelector((store) => store.user)
+
+  useEffect(() => {
+    document.title = `RedInking | About`
+  }, [])
 
   return (
     <div

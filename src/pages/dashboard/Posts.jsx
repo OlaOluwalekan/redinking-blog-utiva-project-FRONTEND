@@ -17,6 +17,7 @@ const Posts = () => {
 
   useEffect(() => {
     dispatch(getUserPosts())
+    document.title = `RedInking | You - Posts`
   }, [])
 
   return (
