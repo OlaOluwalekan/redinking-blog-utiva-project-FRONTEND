@@ -93,7 +93,7 @@ const Navbar = () => {
             </div>
           )}
           {userMenuIsOpen && (
-            <aside onClick={(e) => dispatch(toggleUserMenu())}>
+            <aside onClick={(e) => dispatch(toggleUserMenu(false))}>
               <aside className={darkMode ? styles.dark : styles.light}>
                 <UserMenuItems
                   path={`/${user?.user.username}/`}
@@ -112,11 +112,11 @@ const Navbar = () => {
                 />
                 <hr />
                 <UserMenuItems
-                  path='/'
+                  path='/settings'
                   text='Settings'
                   icon={<TfiSettings />}
                 />
-                <UserMenuItems path='/' text='Help' icon={<TfiHelpAlt />} />
+                <UserMenuItems path='/help' text='Help' icon={<TfiHelpAlt />} />
                 <UserMenuItems
                   path='/privacy'
                   text='Terms & Policy'
@@ -127,10 +127,10 @@ const Navbar = () => {
                   onClick={(e) => {
                     toast.success('logging you out...')
                     dispatch(toggleUserMenu(false))
+                    navigate('/')
                     setTimeout(() => {
                       dispatch(logOut())
-                      navigate('/')
-                    }, 1000)
+                    }, 500)
                     e.stopPropagation()
                   }}
                 >

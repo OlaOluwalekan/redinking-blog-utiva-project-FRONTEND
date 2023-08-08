@@ -302,7 +302,7 @@
     width: unset;
     flex-direction: row;
     background: none;
-    margin-right: 120px;
+    /* margin-right: 120px; */
   }
 
   .main > div > nav.dark {
@@ -311,6 +311,7 @@
 
   .main > div > nav > section {
     height: unset;
+    width: unset;
     background: none;
   }
 
@@ -351,7 +352,7 @@
     right: 60px;
   }
 
-  .main > div > div > div {
-    z-index: 100;
+  .main > div > div {
+    z-index: 200;
   }
 }

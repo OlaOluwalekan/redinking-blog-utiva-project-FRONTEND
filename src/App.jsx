@@ -24,6 +24,8 @@ import CreatorProfile from './pages/view/CreatorProfile'
 import CreatorPosts from './pages/view/CreatorPosts'
 import CreatorFollowers from './pages/view/CreatorFollowers'
 import CreatorFollowing from './pages/view/CreatorFollowing'
+import Settings from './pages/Settings'
+import Help from './pages/Help'
 
 const App = () => {
   const { darkMode } = useSelector((store) => store.user)
@@ -70,6 +72,8 @@ const App = () => {
               <Route path='following' element={<CreatorFollowing />} />
             </Route>
             <Route path='privacy' element={<Privacy />} />
+            <Route path='settings' element={<Settings />} />
+            <Route path='help' element={<Help />} />
             <Route path='*' element={<Error />} />
           </Route>
         </Routes>
