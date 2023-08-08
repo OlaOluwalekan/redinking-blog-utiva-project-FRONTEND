@@ -30,17 +30,6 @@ const CommentActions = ({ likes, _id, postId, handleOpenReply }) => {
         </span>
         <span>{likes.length}</span>
       </article>
-      <article
-        onClick={(e) => {
-          handleOpenReply()
-          e.stopPropagation()
-        }}
-      >
-        <span>
-          <FaReply />
-        </span>
-        {/* <span>{commentsIsLoading ? 0 : comments.length} Comments</span> */}
-      </article>
     </div>
   )
 }

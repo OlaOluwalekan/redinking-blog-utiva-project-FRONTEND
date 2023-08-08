@@ -93,20 +93,20 @@ const Navbar = () => {
             </div>
           )}
           {userMenuIsOpen && (
-            <aside onClick={() => dispatch(toggleUserMenu())}>
+            <aside onClick={(e) => dispatch(toggleUserMenu())}>
               <aside className={darkMode ? styles.dark : styles.light}>
                 <UserMenuItems
-                  path={`/${user.user.username}/`}
+                  path={`/${user?.user.username}/`}
                   text='Profile'
                   icon={<ImProfile />}
                 />
                 <UserMenuItems
-                  path={`/${user.user.username}/bookmarks`}
+                  path={`/${user?.user.username}/bookmarks`}
                   text='Bookmarks'
                   icon={<ImBookmarks />}
                 />
                 <UserMenuItems
-                  path={`/${user.user.username}/posts`}
+                  path={`/${user?.user.username}/posts`}
                   text='My Posts'
                   icon={<TfiWrite />}
                 />
@@ -124,13 +124,14 @@ const Navbar = () => {
                 />
                 <hr />
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
                     toast.success('logging you out...')
-                    dispatch(toggleUserMenu())
+                    dispatch(toggleUserMenu(false))
                     setTimeout(() => {
                       dispatch(logOut())
                       navigate('/')
                     }, 1000)
+                    e.stopPropagation()
                   }}
                 >
                   <span>

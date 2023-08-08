@@ -6,7 +6,7 @@ const UserMenuItems = ({ icon, text, path }) => {
   const dispatch = useDispatch()
 
   return (
-    <Link to={path} onClick={() => dispatch(toggleUserMenu())}>
+    <Link to={path} onClick={() => dispatch(toggleUserMenu(false))}>
       <span>{icon}</span>
       {text}
     </Link>

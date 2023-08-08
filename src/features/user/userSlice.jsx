@@ -120,8 +120,12 @@ const userSlice = createSlice({
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode
     },
-    toggleUserMenu: (state) => {
-      state.userMenuIsOpen = !state.userMenuIsOpen
+    toggleUserMenu: (state, { payload }) => {
+      if (payload) {
+        state.userMenuIsOpen = payload
+      } else {
+        state.userMenuIsOpen = !state.userMenuIsOpen
+      }
     },
     logOut: (state) => {
       state.user = null

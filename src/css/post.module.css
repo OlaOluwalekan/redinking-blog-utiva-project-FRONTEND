@@ -385,6 +385,11 @@
   color: var(--ashBlack);
 }
 
+.comment-list > section > div > .comment img {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .main.dark .comment {
   color: var(--mainWhite);
 }
