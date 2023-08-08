@@ -49,53 +49,60 @@
 /* NAV ITEMS CONTAINER */
 .main > div > nav {
   position: fixed;
-  left: -300px;
+  left: -1000px;
   top: 0;
-  background-color: var(--purpleBlue);
-  width: 200px;
+  width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
   transition: var(--midTransition);
-  z-index: 35;
+  z-index: 200;
+  background-color: #0000005e;
 }
 
 .main > div > nav.open {
   left: 0;
 }
 
-.main > div > nav.dark {
+.main > div > nav > section {
+  background-color: var(--purpleBlue);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100vh;
+  position: relative;
+}
+
+.main > div > nav.dark > section {
   background-color: var(--darkPurpleBlue);
 }
 
 /* LOGO INSIDE MOBILE NAV */
-.main > div > nav > a {
+.main > div > nav > section > a {
   text-decoration: none;
   width: 100%;
   background-color: var(--mainWhite);
   padding: 10px;
 }
 
-.main > div > nav.dark > a {
+.main > div > nav.dark > section > a {
   background-color: var(--mainBlack);
 }
 
-.main > div > nav > a > h2 {
+.main > div > nav > section > a > h2 {
   color: var(--dullRed);
 }
 
-.main > div > nav > a > h2 > span {
+.main > div > nav > section > a > h2 > span {
   color: var(--purpleBlue);
 }
 
 /* CONTAINER HOLDING NAV LINKS */
-.main > div > nav > article {
+.main > div > nav > section > article {
   display: flex;
   flex-direction: column;
 }
 
 /* NAV LINKS */
-.main > div > nav > article > a {
+.main > div > nav > section > article > a {
   text-decoration: none;
   line-height: 60px;
   width: 100%;
@@ -104,14 +111,14 @@
   transition: var(--midTransition);
 }
 
-.main > div > nav > article > a:hover {
+.main > div > nav > section > article > a:hover {
   padding-left: 25px;
   background-color: var(--mainWhite);
   color: var(--purpleBlue);
 }
 
 /* CLOSE NAV ICON */
-.main > div > nav > span {
+.main > div > nav > section > span {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -196,15 +203,25 @@
 
 /* USER MENU */
 .main > div > div > aside {
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000060;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+.main > div > div > aside > aside {
   position: absolute;
-  top: 40px;
+  top: 50px;
+  right: 30px;
   background-color: var(--mainWhite);
-  z-index: 40;
   width: 200px;
   box-shadow: 1px 1px 7px var(--darkPurpleBlue);
 }
 
-.main > div > div > aside > a {
+.main > div > div > aside > aside > a {
   /* background-color: yellow; */
   display: flex;
   align-items: center;
@@ -214,7 +231,7 @@
   color: var(--purpleBlue);
 }
 
-.main > div > div > aside > button {
+.main > div > div > aside > aside > button {
   display: flex;
   align-items: center;
   line-height: 40px;
@@ -226,12 +243,12 @@
   cursor: pointer;
 }
 
-.main > div > div > aside > a:hover {
+.main > div > div > aside > aside > a:hover {
   color: var(--mainWhite);
   background-color: var(--purpleBlue);
 }
 
-.main > div > div > aside > button:hover {
+.main > div > div > aside > aside > button:hover {
   color: var(--mainWhite);
   background-color: var(--purpleBlue);
 }
@@ -240,29 +257,29 @@
   border: 0.5px solid var(--darkPurpleBlue);
 } */
 
-.main > div > div > aside > a > span {
+.main > div > div > aside > aside > a > span {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 10px;
 }
 
-.main > div > div > aside > button > span {
+.main > div > div > aside > aside > button > span {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 10px;
 }
 
-.main > div > div > aside.dark {
+.main > div > div > aside > aside.dark {
   background-color: var(--darkPurpleBlue);
 }
 
-.main > div > div > aside.dark > a {
+.main > div > div > aside > aside.dark > a {
   color: var(--mainWhite);
 }
 
-.main > div > div > aside.dark > button {
+.main > div > div > aside > aside.dark > button {
   color: var(--mainWhite);
 }
 
@@ -285,26 +302,32 @@
     width: unset;
     flex-direction: row;
     background: none;
+    margin-right: 120px;
   }
 
   .main > div > nav.dark {
     background-color: unset;
   }
 
-  .main > div > nav > a {
+  .main > div > nav > section {
+    height: unset;
+    background: none;
+  }
+
+  .main > div > nav > section > a {
     display: none;
   }
 
-  .main > div > nav > article {
+  .main > div > nav > section > article {
     flex-direction: row;
     margin-right: 100px;
   }
 
-  .main > div > nav > span {
+  .main > div > nav > section > span {
     display: none;
   }
 
-  .main > div > nav > article > a {
+  .main > div > nav > section > article > a {
     width: unset;
     margin-left: 30px;
     color: var(--purpleBlue);
@@ -312,15 +335,20 @@
     padding: 0;
   }
 
-  .main > div > nav.dark > article > a {
+  .main > div > nav.dark > section > article > a {
     color: var(--greyishWhite);
   }
 
-  .main > div > nav > article > a:hover {
+  .main > div > nav > section > article > a:hover {
     padding-left: 0;
     background-color: var(--mainWhite);
     color: var(--purpleBlue);
     text-decoration: underline;
+  }
+
+  .main > div > div > aside > aside {
+    top: 70px;
+    right: 60px;
   }
 
   .main > div > div > div {

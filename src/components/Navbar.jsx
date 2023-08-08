@@ -45,30 +45,33 @@ const Navbar = () => {
           className={`${navIsOpen ? styles.open : ''} ${
             darkMode ? styles.dark : ''
           }`}
+          onClick={() => dispatch(closeNav())}
         >
-          {/* LOGO */}
-          {navIsOpen && (
-            <Link to='/' onClick={() => dispatch(closeNav())}>
-              <h2>
-                Red<span>Inking</span>
-              </h2>
-            </Link>
-          )}
+          <section>
+            {/* LOGO */}
+            {navIsOpen && (
+              <Link to='/' onClick={() => dispatch(closeNav())}>
+                <h2>
+                  Red<span>Inking</span>
+                </h2>
+              </Link>
+            )}
 
-          {/* CLOSE NAV BUTTON */}
-          {navIsOpen && (
-            <span onClick={() => dispatch(closeNav())}>
-              <FaTimes />
-            </span>
-          )}
+            {/* CLOSE NAV BUTTON */}
+            {navIsOpen && (
+              <span onClick={() => dispatch(closeNav())}>
+                <FaTimes />
+              </span>
+            )}
 
-          {/* NAV LINKS */}
-          <article onClick={() => dispatch(closeNav())}>
-            <Link to='/about'>About</Link>
-            <Link to='/write'>Write</Link>
-            {!user && <Link to='/auth/login'>Sign In</Link>}
-            {!user && <Link to='/auth/register'>Get Started</Link>}
-          </article>
+            {/* NAV LINKS */}
+            <article onClick={() => dispatch(closeNav())}>
+              <Link to='/about'>About</Link>
+              <Link to='/write'>Write</Link>
+              {!user && <Link to='/auth/login'>Sign In</Link>}
+              {!user && <Link to='/auth/register'>Get Started</Link>}
+            </article>
+          </section>
         </nav>
 
         {/* TOGGLE DARK MODE */}
@@ -90,46 +93,52 @@ const Navbar = () => {
             </div>
           )}
           {userMenuIsOpen && (
-            <aside className={darkMode ? styles.dark : styles.light}>
-              <UserMenuItems
-                path={`/${user.user.username}/`}
-                text='Profile'
-                icon={<ImProfile />}
-              />
-              <UserMenuItems
-                path={`/${user.user.username}/bookmarks`}
-                text='Bookmarks'
-                icon={<ImBookmarks />}
-              />
-              <UserMenuItems
-                path={`/${user.user.username}/posts`}
-                text='My Posts'
-                icon={<TfiWrite />}
-              />
-              <hr />
-              <UserMenuItems path='/' text='Settings' icon={<TfiSettings />} />
-              <UserMenuItems path='/' text='Help' icon={<TfiHelpAlt />} />
-              <UserMenuItems
-                path='/privacy'
-                text='Terms & Policy'
-                icon={<MdPolicy />}
-              />
-              <hr />
-              <button
-                onClick={() => {
-                  toast.success('logging you out...')
-                  dispatch(toggleUserMenu())
-                  setTimeout(() => {
-                    dispatch(logOut())
-                    navigate('/')
-                  }, 1000)
-                }}
-              >
-                <span>
-                  <BiLogOut />
-                </span>
-                <span>Logout</span>
-              </button>
+            <aside onClick={() => dispatch(toggleUserMenu())}>
+              <aside className={darkMode ? styles.dark : styles.light}>
+                <UserMenuItems
+                  path={`/${user.user.username}/`}
+                  text='Profile'
+                  icon={<ImProfile />}
+                />
+                <UserMenuItems
+                  path={`/${user.user.username}/bookmarks`}
+                  text='Bookmarks'
+                  icon={<ImBookmarks />}
+                />
+                <UserMenuItems
+                  path={`/${user.user.username}/posts`}
+                  text='My Posts'
+                  icon={<TfiWrite />}
+                />
+                <hr />
+                <UserMenuItems
+                  path='/'
+                  text='Settings'
+                  icon={<TfiSettings />}
+                />
+                <UserMenuItems path='/' text='Help' icon={<TfiHelpAlt />} />
+                <UserMenuItems
+                  path='/privacy'
+                  text='Terms & Policy'
+                  icon={<MdPolicy />}
+                />
+                <hr />
+                <button
+                  onClick={() => {
+                    toast.success('logging you out...')
+                    dispatch(toggleUserMenu())
+                    setTimeout(() => {
+                      dispatch(logOut())
+                      navigate('/')
+                    }, 1000)
+                  }}
+                >
+                  <span>
+                    <BiLogOut />
+                  </span>
+                  <span>Logout</span>
+                </button>
+              </aside>
             </aside>
           )}
         </div>
